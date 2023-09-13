@@ -112,30 +112,40 @@ if(role === 'ROLE_ADMIN'){
   return (
     <>
       <Layout>
-        <h2>Log Data Jenis Beras</h2>
-        <form className={styles.form}>
-          <input  type="search" id="query" name="q" placeholder="Search..." onChange={(e) => setSearch(e.target.value)}/>
-            <button onClick={handleSubmit}> Search</button>
+        <h2 className="text-bold text-2xl">Log Data Jenis Beras</h2>
+        <form className="relative flex items-end">
+          <input 
+          className="rounded-lg border bg-transparent p-1 outline-none focus:border-blue-600 focus-visible:shadow-none" type="search" id="query" name="q" placeholder="Search..." onChange={(e) => setSearch(e.target.value)}/>
+            <button className="ml-1.5" onClick={handleSubmit}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+   <path d="M21 21l-6 -6"></path>
+</svg>
+            </button>
         </form>
         
         <div className="container">
-        <button onClick={addJenisBerasHandler}> Add New Jenis Beras</button>
-          <table className="table table-bordered mb-0">
+        <button 
+        className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"onClick={addJenisBerasHandler}> Add New Jenis Beras</button>
+          <table className="table-auto border rounded-sm pt-2 mb-0 w-auto overflow-auto">
             <thead>
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Jenis Beras</th>
-                <th scope="col">AKSI</th>
+              <tr className="bg-gray-300 border">
+                <th className="px-3 py-2 border" scope="col">No</th>
+                <th className="px-3 py-2 border" scope="col">Jenis Beras</th>
+                <th className="px-3 py-2 border" scope="col">AKSI</th>
               </tr>
             </thead>
             <tbody>
               {content && content.map((content) => (
                 <tr key={content.id}>
-                  <td>{content.id} </td>
-                  <td>{content.nama} </td>
-                  <td className="text-center">
-                    <button onClick={handleEdit} value={content.id}>EDIT</button>
-                    <button onClick={handleDelete} value={content.id}>DELETE</button>
+                  <td className="px-3 py-2 border">{content.id} </td>
+                  <td className="px-3 py-2 border">{content.nama} </td>
+                  <td className="px-3 py-2 border align-baseline">
+                    <button 
+                    className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"onClick={handleEdit} value={content.id}>EDIT</button>
+                    <button 
+                    className="inline-flex rounded bg-red-500 hover:opacity-80 active:bg-red-600 text-center text-white text-xs px-2 py-1 cursor-pointer"onClick={handleDelete} value={content.id}>DELETE</button>
                   </td>
                 </tr>
               ))}
