@@ -174,6 +174,7 @@ export default function SignIn() {
         {/* form */}
         <div className="w-full border-stroke xl:w-1/2 xl:border-l-2 px-6 my-7">
           <div className="w-full p-4 sm:p-12.5 xl:p-17.5">
+            <p className="mb-2.5 opacity-50">Masuk ke Sistem Pencatatan Produksi Beras</p>
             <h1 className="mb-9 text-3xl font-bold text-black sm:text-title-xl2">
               Sign In
             </h1>

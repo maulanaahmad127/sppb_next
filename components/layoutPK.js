@@ -1,30 +1,24 @@
-import styles from '../styles/Home.module.css';
-import NavbarPK from './navbarPK';
-import Footer from './footer';
+import styles from "../styles/Home.module.css";
+import NavbarPK from "./navbarPK";
+import Footer from "./footer";
 
 export default function Layout({ children }) {
   return (
     <>
-    <NavbarPK />
-    <div className={styles.container}>
-        {children}
-    </div>
-
-
-    <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-      
+      {/* main body */}
+      <div className="flex h-full bg-gray-100 overflow-auto">
+        {/* sidebar */}
+        <NavbarPK isOpen={sidebarOpen} toggleSidebar={handleViewSidebar} />
+        {/* content */}
+        <main className="w-full md:p-6 2xl:p-10">
+          {/* header */}
+          <></>
+          <div className="w-full flex flex-col">
+            {/* children */}
+            {children}
+          </div>
+        </main>
+      </div>
     </>
-    );
+  );
 }

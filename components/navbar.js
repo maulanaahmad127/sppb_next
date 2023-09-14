@@ -8,7 +8,7 @@ const Navbar = () => {
   const { isCollapsed, toggleSidebarcollapse } = useContext(SidebarContext);
 
   return (
-    <div className="relative">
+    <div className="relative h-full">
       {/* <button className="btn" onClick={toggleSidebarcollapse}>
         {isCollapsed ? (
           // menu icon
@@ -34,14 +34,14 @@ const Navbar = () => {
         )}
       </button> */}
       <aside
-        className="absolute left-0 top-0 z-9999 flex h-screen w-60 flex-col overflow-y-hidden bg-indigo-900 duration-300 ease-linear lg:block lg:translate-x-0"
+        className="left-0 top-0 bottom-0 h-screen flex w-60 flex-col bg-indigo-900 duration-300 ease-linear lg:block lg:translate-x-0"
         data-collapsed={isCollapsed}
       >
         <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5"></div>
-
         {/* sidebar logo */}
-        <div className="sidebar-header flex items-center justify-center py-3">
+        <div className="flex items-center justify-center py-3">
           <div className="inline-flex">
+            {/* insert logo */}
             <a href="#" className="inline-flex flex-row items-center">
               <span className=" leading-10 text-4x1 text-white font-bold font-large ml-1">
                 SPPB
@@ -86,11 +86,6 @@ const Navbar = () => {
               >
                 Stok Beras
               </Link>
-              <ul>
-                <li>
-                  <Link href="/StokBeras/updateStokBeras">Edit Stok Beras</Link>
-                </li>
-              </ul>
             </li>
             <li>
               <Link
@@ -125,17 +120,6 @@ const Navbar = () => {
               >
                 Profil
               </Link>
-              <ul>
-                <li>
-                  <Link href="/Profil/updatePassword">Edit Password</Link>
-                </li>
-                <li>
-                  <Link href="/Profil/updateEmail">Edit Email</Link>
-                </li>
-                <li>
-                  <Link href="/Profil/updateUsername">Edit Username</Link>
-                </li>
-              </ul>
             </li>
             <li>
               <Link
