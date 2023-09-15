@@ -25,7 +25,8 @@ const handler = async (req, res) => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    const header = response.headers.getSetCookie();
+    console.log(data);
+    const header = response.headers.get('set-cookie');
     const status = response.ok;
 
     return res.end(JSON.stringify({

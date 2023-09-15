@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .item {
   align-items: center;
   color: black;
@@ -16,50 +20,69 @@
 .active {
   border: solid 1px #808e9b;
   border-radius: 40px;
-  color: #808e9b;
+  color: #fff;
+  background-color: #808e9b;
 }
 
 .break-me {
 }
 
-.next {
-  border-left: solid 1px #808e9b;
-  font-size: 20px;
-  height: flex;
-  
-  position: right;
-  width: flex;
-}
-
 .pagination {
   align-items: center;
   background-color: white;
-  display: inline-block;
+  display: flex;
   height: 60px;
   justify-content: center;
-  list-style-type: none;
+  list-style: none;
   position: relative;
-  width: 500px;
+  width: auto;
+  gap: 5px;
+}
+
+.previous:hover,
+.next:hover,
+.pagination-page:hover{
+  background-color: #808e9b;
+  color: #fff;
+  border: solid 1px #808e9b;
+  border-radius: 40px;
 }
 
 .pagination-page {
+  padding: 5px 8px;
   font-weight: 700;
 }
 
 .previous {
-  border-right: solid 1px #808e9b;
   font-size: 20px;
   height: flex;
-  
+  margin-right: 8px;
   position: left;
   width: flex;
+  border: solid 1px #808e9b;
+  border-radius: 40px;
+  color: #808e9b;
 }
+
+.next {
+  font-size: 20px;
+  height: flex;
+  margin-left: 8px;
+  position: right;
+  width: flex;
+  border: solid 1px #808e9b;
+  border-radius: 40px;
+  color: #808e9b;
+}
+
+
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body{
   background: #f2f2f2;
   font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
 }
 
 .search {
@@ -102,4 +125,22 @@ body{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.btn {
+  position: absolute;
+  right: 0;
+  top: 4.7rem;
+  border: none;
+  background-color: var(--color-bg);
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translateX(50%);
+  font-size: 1.1rem;
 }
