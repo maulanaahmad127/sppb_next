@@ -32,7 +32,7 @@ export default function formEditUsername() {
     const status = data.status;
     if (status) {
       alert("username berhasil dirubah");
-      router.push("/Profil/getProfil");
+      router.push("/signout");
     } else {
       alert(data.data.message);
     }

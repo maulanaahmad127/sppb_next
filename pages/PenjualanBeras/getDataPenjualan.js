@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
+import FileSaver from 'file-saver';
 
 export default function editStok() {
   const [content, setContent] = useState(null);
@@ -57,7 +58,11 @@ export default function editStok() {
     };
     const url = "/api/PenjualanBeras/getPenjualanBerasPDF";
     try {
-      await fetch(url, options);
+      const pdf = await fetch(url, options);
+      const file = await pdf.blob();
+      let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}` 
+      let fileName =  `data_penjualan_beras${currentDate}`
+      FileSaver(file, fileName);
     } catch (error) {
       console.log(error);
     }

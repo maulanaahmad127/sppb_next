@@ -26,10 +26,9 @@ const handler = async (req, res) => {
 }
   const response = await fetch(urlRest, options); // replace this with your API call & options
   if (!response.ok) throw new Error(`unexpected response ${response.statusText}`);
-  let date = new Date();
-  let currentDate = `LastSynced_${date.getFullYear()}-${date.getMonth()}-${date.getDate()}@${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}` 
-  res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', `attachment; filename=listStokBeras${currentDate}.pdf`);
+  response.headers.forEach((value, key) => {
+    res.setHeader(key, value);
+  })
   await pipeline(response.body, res);
 };
 

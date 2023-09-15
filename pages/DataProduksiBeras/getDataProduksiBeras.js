@@ -3,6 +3,7 @@ import Router from "next/router";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import { Dialog } from "@headlessui/react";
+import FileSaver from 'file-saver';
 
 export default function getDataProduksiBeras() {
   const [content, setContent] = useState(null);
@@ -83,7 +84,11 @@ export default function getDataProduksiBeras() {
     };
     const url = "../api/DataProduksiBeras/getDataProduksiBerasPDF";
     try {
-      await fetch(url, options);
+      const pdf = await fetch(url, options);
+      const file = await pdf.blob();
+      let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}` 
+      let fileName =  `data_produksi_beras${currentDate}`
+      FileSaver(file, fileName);
     } catch (error) {
       console.log(error);
     }

@@ -21,8 +21,8 @@ export default function SignIn() {
     const res = await fetch(url, options);
     const data = await res.json();
     console.log(data.data);
-    const role = data.data.roles[0];
-
+    let role = data.data.roles[0];
+    console.log(`role ${role}`)
     if (data.status) {
       if (role === "ROLE_PETANI") {
         Router.push({
