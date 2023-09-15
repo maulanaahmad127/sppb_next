@@ -47,8 +47,9 @@ export default function getDataProduksiBeras() {
     setContent(listData);
   }
 
-  function pagginationHandler(event) {
+  async function pagginationHandler(event) {
     const curpage = event.selected;
+    console.log(`page : ${curpage}`)
     setPage(curpage);
   }
 
@@ -418,13 +419,13 @@ export default function getDataProduksiBeras() {
                   </tbody>
                 </table>
                 <ReactPaginate
-                  activeClassName={"item active "}
-                  breakClassName={"item break-me "}
+                  activeClassName={"item active"}
+                  breakClassName={"item break-me"}
                   breakLabel={"..."}
                   containerClassName={"pagination"}
                   disabledClassName={"disabled-page"}
                   nextClassName={"item next "}
-                  pageClassName={"item pagination-page "}
+                  pageClassName={"item pagination-page"}
                   nextLabel={">"}
                   previousLabel={"<"}
                   previousClassName={"item previous"}
@@ -563,13 +564,13 @@ export default function getDataProduksiBeras() {
                   </tbody>
                 </table>
                 <ReactPaginate
-                  activeClassName={"item active "}
-                  breakClassName={"item break-me "}
+                  activeClassName={"item active"}
+                  breakClassName={"item break-me"}
                   breakLabel={"..."}
                   containerClassName={"pagination"}
                   disabledClassName={"disabled-page"}
                   nextClassName={"item next "}
-                  pageClassName={"item pagination-page "}
+                  pageClassName={"item pagination-page"}
                   nextLabel={">"}
                   previousLabel={"<"}
                   previousClassName={"item previous"}

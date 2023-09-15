@@ -47,7 +47,7 @@ export default function Dashboard() {
     setContent(listData);
   }
 
-  function pagginationHandler(event) {
+  async function pagginationHandler(event) {
     const curpage = event.selected;
     console.log(`sekarang ada di page ${curpage}`);
     setPage(curpage);
@@ -330,7 +330,7 @@ export default function Dashboard() {
                   </tbody>
                 </table>
                 <ReactPaginate
-                  activeClassName={"item active "}
+                  activeClassName={"item active"}
                   breakClassName={"item break-me "}
                   breakLabel={"..."}
                   containerClassName={"pagination"}
@@ -414,7 +414,7 @@ export default function Dashboard() {
                   </tbody>
                 </table>
                 <ReactPaginate
-                  activeClassName={"item active "}
+                  activeClassName={"item active"}
                   breakClassName={"item break-me "}
                   breakLabel={"..."}
                   containerClassName={"pagination"}

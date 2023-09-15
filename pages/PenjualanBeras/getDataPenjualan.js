@@ -41,7 +41,7 @@ export default function editStok() {
     setContent(listData);
   }
 
-  function pagginationHandler(event) {
+  async function pagginationHandler(event) {
     const curpage = event.selected;
     console.log(`sekarang ada di page ${curpage}`);
     setPage(curpage);
