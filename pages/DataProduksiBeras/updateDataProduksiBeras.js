@@ -1,5 +1,4 @@
 import Layout from "../../components/layout";
-import styles from "../../styles/login.module.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 

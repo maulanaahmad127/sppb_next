@@ -7,7 +7,7 @@ export default function signOut () {
     useEffect(() => {
         localStorage.removeItem("token")
         localStorage.removeItem("role")
-        router.push('/')
+        router.push('/signin')
     
       }, [])
   

@@ -45,7 +45,7 @@ export default function SignUp() {
   }
 
   return (
-    <div className=" m-10 rounded-sm border border-stroke bg-white shadow-default">
+    <div className="my-10 mx-auto flex w-fit justify-center rounded-sm border border-stroke bg-white shadow-default">
       <div className="flex flex-wrap items-center">
         {/* img */}
         <div className="hidden w-full xl:block xl:w-1/2">

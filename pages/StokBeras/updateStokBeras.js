@@ -123,7 +123,7 @@ export default function editStok() {
             </button>
           </form>
 
-          <div className="container pt-2.5">
+          <div className="container pt-2.5 w-fit">
             <table className="table-auto border rounded-sm pt-3 mb-2 w-full overflow-auto">
               <thead>
                 <tr className="bg-gray-300 border">

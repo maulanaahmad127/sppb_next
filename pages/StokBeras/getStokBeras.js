@@ -126,53 +126,54 @@ export default function editStok() {
                   Download
                 </button>
               </div>
-
-              <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
-                <thead>
-                  <tr className="bg-gray-300 border">
-                    <th className="px-3 py-2 border" scope="col">
-                      ID
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Jenis Beras
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Stok (Kilogram)
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {content &&
-                    content.map((content) => (
-                      <tr key={content.jenisBerasID}>
-                        <td className="px-3 py-2 border">
-                          {content.jenisBerasID}{" "}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.jenisBeras}{" "}
-                        </td>
-                        <td className="px-3 py-2 border">{content.stok}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-              <ReactPaginate
-                activeClassName={"item active "}
-                breakClassName={"item break-me "}
-                breakLabel={"..."}
-                containerClassName={"pagination"}
-                disabledClassName={"disabled-page"}
-                nextClassName={"item next "}
-                pageClassName={"item pagination-page "}
-                nextLabel={">"}
-                previousLabel={"<"}
-                previousClassName={"item previous"}
-                initialPage={page}
-                pageCount={totalPage}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={pagginationHandler}
-              />
+              <div className="w-fit">
+                <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
+                  <thead>
+                    <tr className="bg-gray-300 border">
+                      <th className="px-3 py-2 border" scope="col">
+                        ID
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Jenis Beras
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Stok (Kilogram)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {content &&
+                      content.map((content) => (
+                        <tr key={content.jenisBerasID}>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBerasID}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBeras}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">{content.stok}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <ReactPaginate
+                  activeClassName={"item active "}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  disabledClassName={"disabled-page"}
+                  nextClassName={"item next "}
+                  pageClassName={"item pagination-page "}
+                  nextLabel={">"}
+                  previousLabel={"<"}
+                  previousClassName={"item previous"}
+                  initialPage={page}
+                  pageCount={totalPage}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={pagginationHandler}
+                />
+              </div>
             </div>
           </div>
         </Layout>
@@ -182,83 +183,84 @@ export default function editStok() {
     return (
       <>
         <Layout>
-        <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <h2 className="font-bold text-2xl my-4">Data Stok Beras</h2>
-          <div className="container pt-2.5">
-            <button
-              className="inline-flex items-stretch rounded bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 mb-5 cursor-pointer"
-              onClick={handleSubmit}
-            >
-              <span className="pr-1.5">
-                <svg
-                  className="mr-1.5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-download"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
-                  <path d="M7 11l5 5l5 -5"></path>
-                  <path d="M12 4l0 12"></path>
-                </svg>
-              </span>
-              Download
-            </button>
-
-            <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
-              <thead>
-                <tr className="bg-gray-300 border">
-                  <th className="px-3 py-2 border" scope="col">
-                    ID
-                  </th>
-                  <th className="px-3 py-2 border" scope="col">
-                    Jenis Beras
-                  </th>
-                  <th className="px-3 py-2 border" scope="col">
-                    Stok (Kilogram)
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {content &&
-                  content.map((content) => (
-                    <tr key={content.jenisBerasID}>
-                      <td className="px-3 py-2 border">
-                        {content.jenisBerasID}{" "}
-                      </td>
-                      <td className="px-3 py-2 border">
-                        {content.jenisBeras}{" "}
-                      </td>
-                      <td className="px-3 py-2 border">{content.stok}</td>
+          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl my-4">Data Stok Beras</h2>
+            <div className="container pt-2.5">
+              <button
+                className="inline-flex items-stretch rounded bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 mb-5 cursor-pointer"
+                onClick={handleSubmit}
+              >
+                <span className="pr-1.5">
+                  <svg
+                    className="mr-1.5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="icon icon-tabler icon-tabler-download"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path>
+                    <path d="M7 11l5 5l5 -5"></path>
+                    <path d="M12 4l0 12"></path>
+                  </svg>
+                </span>
+                Download
+              </button>
+              <div className="w-fit">
+                <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
+                  <thead>
+                    <tr className="bg-gray-300 border">
+                      <th className="px-3 py-2 border" scope="col">
+                        ID
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Jenis Beras
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Stok (Kilogram)
+                      </th>
                     </tr>
-                  ))}
-              </tbody>
-            </table>
-            <ReactPaginate
-              activeClassName={"item active "}
-              breakClassName={"item break-me "}
-              breakLabel={"..."}
-              containerClassName={"pagination"}
-              disabledClassName={"disabled-page"}
-              nextClassName={"item next "}
-              pageClassName={"item pagination-page "}
-              nextLabel={">"}
-              previousLabel={"<"}
-              previousClassName={"item previous"}
-              initialPage={page}
-              pageCount={totalPage}
-              marginPagesDisplayed={2}
-              pageRangeDisplayed={5}
-              onPageChange={pagginationHandler}
-            />
-          </div>
+                  </thead>
+                  <tbody>
+                    {content &&
+                      content.map((content) => (
+                        <tr key={content.jenisBerasID}>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBerasID}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBeras}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">{content.stok}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <ReactPaginate
+                  activeClassName={"item active "}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  disabledClassName={"disabled-page"}
+                  nextClassName={"item next "}
+                  pageClassName={"item pagination-page "}
+                  nextLabel={">"}
+                  previousLabel={"<"}
+                  previousClassName={"item previous"}
+                  initialPage={page}
+                  pageCount={totalPage}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={pagginationHandler}
+                />
+              </div>
+            </div>
           </div>
         </Layout>
       </>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
+import { Dialog } from "@headlessui/react";
 
 export default function Dashboard() {
   const [content, setContent] = useState(null);
@@ -12,6 +13,8 @@ export default function Dashboard() {
   const [isDeleted, setIsDeleted] = useState(false);
   let roleSignin = localStorage.getItem("role");
   const [role, setRole] = useState(roleSignin);
+  let [isOpen, setIsOpen] = useState(false);
+  const [targetId, setTargetId] = useState();
 
   useEffect(() => {
     fetchContent();
@@ -73,6 +76,16 @@ export default function Dashboard() {
     );
   }
 
+  function handleModal(event) {
+    setIsOpen(true);
+    setTargetId(event.currentTarget.value);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+    setTargetId(null);
+  }
+
   async function handleDelete(event) {
     event.preventDefault();
     let idx = event.target.value;
@@ -91,11 +104,12 @@ export default function Dashboard() {
     const data = await res.json();
     const status = data.status;
     if (status) {
-      alert("data berhasil dihapus");
+      alert("Data berhasil dihapus");
       if (isDeleted) {
         setIsDeleted(false);
       } else {
         setIsDeleted(true);
+        closeModal();
       }
     } else {
       alert(data.data.message);
@@ -104,6 +118,65 @@ export default function Dashboard() {
   if (role === "ROLE_ADMIN") {
     return (
       <>
+        {/* delete alert */}
+        <Dialog
+          as="div"
+          className="relative z-50"
+          open={isOpen}
+          onClose={closeModal}
+        >
+          <div className="fixed inset-0 bg-black/30" aria-hidden="true">
+            <div className="fixed inset-0 flex w-auto items-center justify-center p-4">
+              <Dialog.Panel className="w-auto max-w-142.5 rounded-lg bg-white py-12 px-8 text-center md:py-15 md:px-17.5">
+                <span className="mx-auto inline-block">
+                  <svg
+                    width="60"
+                    height="60"
+                    viewBox="0 0 60 60"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      opacity="0.1"
+                      width="60"
+                      height="60"
+                      rx="30"
+                      fill="#DC2626"
+                    ></rect>
+                    <path
+                      d="M30 27.2498V29.9998V27.2498ZM30 35.4999H30.0134H30ZM20.6914 41H39.3086C41.3778 41 42.6704 38.7078 41.6358 36.8749L32.3272 20.3747C31.2926 18.5418 28.7074 18.5418 27.6728 20.3747L18.3642 36.8749C17.3296 38.7078 18.6222 41 20.6914 41Z"
+                      stroke="#DC2626"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </span>
+                <Dialog.Title className="mt-5.5 pb-2 text-xl font-bold sm:text-2xl">
+                  Hapus Entri?
+                </Dialog.Title>
+                <p className="mb-10">
+                  Data yang dihapus tidak dapat dipulihkan lagi
+                </p>
+                <div className="flex justify-between gap-y-6">
+                  <button
+                    className="block w-2/5 rounded border bg-gray-400 p-3 text-center font-medium text-white transition hover:border-meta-1 hover:bg-red-500 hover:text-white"
+                    onClick={closeModal}
+                  >
+                    Batal
+                  </button>
+                  <button
+                    className="block w-2/5 rounded border bg-red-500 p-3 text-center font-medium text-white transition hover:bg-opacity-80"
+                    onClick={handleDelete}
+                    value={targetId}
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </Dialog.Panel>
+            </div>
+          </div>
+        </Dialog>
         <Layout>
           <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
             <h2 className="font-bold text-2xl my-4">Log Data Jenis Beras</h2>
@@ -167,112 +240,113 @@ export default function Dashboard() {
                   </button>
                 </div>
               </div>
-
-              <table className="table-auto border rounded-sm pt-2 mb-3 w-auto overflow-auto">
-                <thead>
-                  <tr className="bg-gray-300 border">
-                    <th className="px-3 py-2 border" scope="col">
-                      No
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Jenis Beras
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      AKSI
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {content &&
-                    content.map((content) => (
-                      <tr key={content.id}>
-                        <td className="px-3 py-2 border">{content.id} </td>
-                        <td className="px-3 py-2 border">{content.nama} </td>
-                        <td className="px-3 py-2 border align-baseline justify-end">
-                          <button
-                            className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
-                            onClick={handleEdit}
-                            value={content.id}
-                          >
-                            <span className="mr-1.5">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-edit"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="currentColor"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <path
-                                  stroke="none"
-                                  d="M0 0h24v24H0z"
+              <div className=" w-fit">
+                <table className="table-auto border rounded-sm pt-2 mb-3 w-auto overflow-auto">
+                  <thead>
+                    <tr className="bg-gray-300 border">
+                      <th className="px-3 py-2 border" scope="col">
+                        No
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Jenis Beras
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        AKSI
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {content &&
+                      content.map((content) => (
+                        <tr key={content.id}>
+                          <td className="px-3 py-2 border">{content.id} </td>
+                          <td className="px-3 py-2 border">{content.nama} </td>
+                          <td className="px-3 py-2 border align-baseline justify-end">
+                            <button
+                              className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                              onClick={handleEdit}
+                              value={content.id}
+                            >
+                              <span className="mr-1.5">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  class="icon icon-tabler icon-tabler-edit"
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="2"
+                                  stroke="currentColor"
                                   fill="none"
-                                ></path>
-                                <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                                <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                                <path d="M16 5l3 3"></path>
-                              </svg>
-                            </span>
-                            EDIT
-                          </button>
-                          <button
-                            className="inline-flex rounded bg-red-500 hover:opacity-80 active:bg-red-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
-                            onClick={handleDelete}
-                            value={content.id}
-                          >
-                            <span className="mr-1.5">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-trash"
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="currentColor"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <path
-                                  stroke="none"
-                                  d="M0 0h24v24H0z"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                >
+                                  <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  ></path>
+                                  <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                                  <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                                  <path d="M16 5l3 3"></path>
+                                </svg>
+                              </span>
+                              EDIT
+                            </button>
+                            <button
+                              className="inline-flex rounded bg-red-500 hover:opacity-80 active:bg-red-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                              onClick={handleModal}
+                              value={content.id}
+                            >
+                              <span className="mr-1.5">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  class="icon icon-tabler icon-tabler-trash"
+                                  width="20"
+                                  height="20"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="2"
+                                  stroke="currentColor"
                                   fill="none"
-                                ></path>
-                                <path d="M4 7l16 0"></path>
-                                <path d="M10 11l0 6"></path>
-                                <path d="M14 11l0 6"></path>
-                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                              </svg>
-                            </span>
-                            DELETE
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-              <ReactPaginate
-                activeClassName={"item active "}
-                breakClassName={"item break-me "}
-                breakLabel={"..."}
-                containerClassName={"pagination"}
-                disabledClassName={"disabled-page"}
-                nextClassName={"item next "}
-                pageClassName={"item pagination-page "}
-                nextLabel={">"}
-                previousLabel={"<"}
-                previousClassName={"item previous"}
-                initialPage={page}
-                pageCount={totalPage}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={pagginationHandler}
-              />
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                >
+                                  <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  ></path>
+                                  <path d="M4 7l16 0"></path>
+                                  <path d="M10 11l0 6"></path>
+                                  <path d="M14 11l0 6"></path>
+                                  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                                  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                                </svg>
+                              </span>
+                              DELETE
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <ReactPaginate
+                  activeClassName={"item active "}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  disabledClassName={"disabled-page"}
+                  nextClassName={"item next "}
+                  pageClassName={"item pagination-page "}
+                  nextLabel={">"}
+                  previousLabel={"<"}
+                  previousClassName={"item previous"}
+                  initialPage={page}
+                  pageCount={totalPage}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={pagginationHandler}
+                />
+              </div>
             </div>
           </div>
         </Layout>
@@ -317,44 +391,46 @@ export default function Dashboard() {
                   </svg>
                 </button>
               </div>
-              <table className="table-auto border rounded-sm pt-2 mb-3 w-auto overflow-auto">
-                <thead>
-                  <tr className="bg-gray-300 border">
-                    <th className="px-3 py-2 border" scope="col">
-                      No
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Jenis Beras
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {content &&
-                    content.map((content) => (
-                      <tr key={content.id}>
-                        <td className="px-3 py-2 border">{content.id} </td>
-                        <td className="px-3 py-2 border">{content.nama} </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-              <ReactPaginate
-                activeClassName={"item active "}
-                breakClassName={"item break-me "}
-                breakLabel={"..."}
-                containerClassName={"pagination"}
-                disabledClassName={"disabled-page"}
-                nextClassName={"item next "}
-                pageClassName={"item pagination-page "}
-                nextLabel={">"}
-                previousLabel={"<"}
-                previousClassName={"item previous"}
-                initialPage={page}
-                pageCount={totalPage}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={pagginationHandler}
-              />
+              <div className="w-fit">
+                <table className="table-auto border rounded-sm pt-2 mb-3 w-auto overflow-auto">
+                  <thead>
+                    <tr className="bg-gray-300 border">
+                      <th className="px-3 py-2 border" scope="col">
+                        No
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Jenis Beras
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {content &&
+                      content.map((content) => (
+                        <tr key={content.id}>
+                          <td className="px-3 py-2 border">{content.id} </td>
+                          <td className="px-3 py-2 border">{content.nama} </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <ReactPaginate
+                  activeClassName={"item active "}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  disabledClassName={"disabled-page"}
+                  nextClassName={"item next "}
+                  pageClassName={"item pagination-page "}
+                  nextLabel={">"}
+                  previousLabel={"<"}
+                  previousClassName={"item previous"}
+                  initialPage={page}
+                  pageCount={totalPage}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={pagginationHandler}
+                />
+              </div>
             </div>
           </div>
         </Layout>

@@ -96,69 +96,70 @@ export default function editStok() {
                 </span>{" "}
                 Download
               </button>
-
-              <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
-                <thead>
-                  <tr className="bg-gray-300 border">
-                    <th className="px-3 py-2 border" scope="col">
-                      ID
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Jenis Beras
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Terjual
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Total (Kilogram)
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Bulan
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Tahun
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {content &&
-                    content.map((content) => (
-                      <tr key={content.jenisBerasID}>
-                        <td className="px-3 py-2 border">
-                          {content.jenisBerasID}{" "}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.jenisBeras}{" "}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.berasTerjual}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.totalBerat}
-                        </td>
-                        <td className="px-3 py-2 border">{content.bulan}</td>
-                        <td className="px-3 py-2 border">{content.tahun}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-              <ReactPaginate
-                activeClassName={"item active "}
-                breakClassName={"item break-me "}
-                breakLabel={"..."}
-                containerClassName={"pagination"}
-                disabledClassName={"disabled-page"}
-                nextClassName={"item next "}
-                pageClassName={"item pagination-page "}
-                nextLabel={">"}
-                previousLabel={"<"}
-                previousClassName={"item previous"}
-                initialPage={page}
-                pageCount={totalPage}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={pagginationHandler}
-              />
+              <div className="w-fit">
+                <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
+                  <thead>
+                    <tr className="bg-gray-300 border">
+                      <th className="px-3 py-2 border" scope="col">
+                        ID
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Jenis Beras
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Terjual
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Total (Kilogram)
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Bulan
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Tahun
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {content &&
+                      content.map((content) => (
+                        <tr key={content.jenisBerasID}>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBerasID}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBeras}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.berasTerjual}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.totalBerat}
+                          </td>
+                          <td className="px-3 py-2 border">{content.bulan}</td>
+                          <td className="px-3 py-2 border">{content.tahun}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <ReactPaginate
+                  activeClassName={"item active "}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  disabledClassName={"disabled-page"}
+                  nextClassName={"item next "}
+                  pageClassName={"item pagination-page "}
+                  nextLabel={">"}
+                  previousLabel={"<"}
+                  previousClassName={"item previous"}
+                  initialPage={page}
+                  pageCount={totalPage}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={pagginationHandler}
+                />
+              </div>
             </div>
           </div>
         </Layout>
@@ -197,69 +198,70 @@ export default function editStok() {
                 </span>{" "}
                 Download
               </button>
-
-              <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
-                <thead>
-                  <tr className="bg-gray-300 border">
-                    <th className="px-3 py-2 border" scope="col">
-                      ID
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Jenis Beras
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Terjual
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Total (Kilogram)
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Bulan
-                    </th>
-                    <th className="px-3 py-2 border" scope="col">
-                      Tahun
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {content &&
-                    content.map((content) => (
-                      <tr key={content.jenisBerasID}>
-                        <td className="px-3 py-2 border">
-                          {content.jenisBerasID}{" "}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.jenisBeras}{" "}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.berasTerjual}
-                        </td>
-                        <td className="px-3 py-2 border">
-                          {content.totalBerat}
-                        </td>
-                        <td className="px-3 py-2 border">{content.bulan}</td>
-                        <td className="px-3 py-2 border">{content.tahun}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-              <ReactPaginate
-                activeClassName={"item active "}
-                breakClassName={"item break-me "}
-                breakLabel={"..."}
-                containerClassName={"pagination"}
-                disabledClassName={"disabled-page"}
-                nextClassName={"item next "}
-                pageClassName={"item pagination-page "}
-                nextLabel={">"}
-                previousLabel={"<"}
-                previousClassName={"item previous"}
-                initialPage={page}
-                pageCount={totalPage}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={pagginationHandler}
-              />
+              <div className="w-fit">
+                <table className="table-auto border rounded-sm pt-3 mb-2 w-auto overflow-auto">
+                  <thead>
+                    <tr className="bg-gray-300 border">
+                      <th className="px-3 py-2 border" scope="col">
+                        ID
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Jenis Beras
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Terjual
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Total (Kilogram)
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Bulan
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
+                        Tahun
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {content &&
+                      content.map((content) => (
+                        <tr key={content.jenisBerasID}>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBerasID}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.jenisBeras}{" "}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.berasTerjual}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.totalBerat}
+                          </td>
+                          <td className="px-3 py-2 border">{content.bulan}</td>
+                          <td className="px-3 py-2 border">{content.tahun}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <ReactPaginate
+                  activeClassName={"item active "}
+                  breakClassName={"item break-me "}
+                  breakLabel={"..."}
+                  containerClassName={"pagination"}
+                  disabledClassName={"disabled-page"}
+                  nextClassName={"item next "}
+                  pageClassName={"item pagination-page "}
+                  nextLabel={">"}
+                  previousLabel={"<"}
+                  previousClassName={"item previous"}
+                  initialPage={page}
+                  pageCount={totalPage}
+                  marginPagesDisplayed={2}
+                  pageRangeDisplayed={5}
+                  onPageChange={pagginationHandler}
+                />
+              </div>
             </div>
           </div>
         </Layout>
