@@ -9,6 +9,7 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("pk");
   const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   useEffect(() => {}, [role, jenis_kelamin]);
 
@@ -27,6 +28,7 @@ export default function SignUp() {
         email: email,
         role: role,
         password: password,
+        passwordConfirmation: passwordConfirmation
       }),
     };
     const url = "./api/signUpHandler";
@@ -368,6 +370,47 @@ export default function SignUp() {
                 name="password"
                 placeholder="Masukkan password"
                 onChange={(event) => setPassword(event.target.value)}
+              />
+              <span className="absolute right-4 bottom-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-lock"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <g opacity="0.5">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z"></path>
+                    <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0"></path>
+                    <path d="M8 11v-4a4 4 0 1 1 8 0v4"></path>
+                  </g>
+                </svg>
+              </span>
+            </div>
+
+            <div className="mb-5 relative">
+              <label
+                htmlFor="password"
+                className="mb-2.5 block font-medium text-black"
+              >
+                Konfirmasi Password
+              </label>
+              <input
+                className="w-full rounded-lg border bg-transparent py-3 pl-4 pr-10 outline-none focus:border-blue-600 focus-visible:shadow-none"
+                type="password"
+                name="password"
+                placeholder="Masukkan password"
+                onChange={(event) => {
+                  setPasswordConfirmation(event.target.value)
+                  console.log(event.target.value)
+                }
+                }
               />
               <span className="absolute right-4 bottom-4">
                 <svg

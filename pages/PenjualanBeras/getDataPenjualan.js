@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import FileSaver from 'file-saver';
@@ -10,8 +10,7 @@ export default function editStok() {
   const [totalPage, setTotalPage] = useState(null);
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
-  let roleSignin = localStorage.getItem("role");
-  const [role, setRole] = useState(roleSignin);
+  const snapshot = useRef(null);
 
   useEffect(() => {
     fetchContent();
@@ -19,7 +18,8 @@ export default function editStok() {
 
   async function fetchContent() {
     const tokenx = localStorage.getItem("token");
-    console.log(tokenx);
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
     const options = {
       method: "GET",
       headers: {
@@ -67,7 +67,7 @@ export default function editStok() {
       console.log(error);
     }
   }
-
+  const role = snapshot.current;
   if (role === "ROLE_ADMIN") {
     return (
       <>

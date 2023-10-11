@@ -1,9 +1,10 @@
 import Router from "next/router";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const snapshot = useRef(null);
 
   async function handleSubmit() {
     const method = "POST";
@@ -20,10 +21,13 @@ export default function SignIn() {
     const url = "./api/signinHandler";
     const res = await fetch(url, options);
     const data = await res.json();
-    console.log(data.data);
-    let role = data.data.roles[0];
-    console.log(`role ${role}`)
-    if (data.status) {
+    
+
+
+    if (!data.status) {
+      alert(`gagal login : ${data.data.message}`);
+    } else {
+      const role = data.data.roles[0];
       if (role === "ROLE_PETANI") {
         Router.push({
           pathname: "/DataProduksiBeras/getDataProduksiBerasByPetani",
@@ -33,12 +37,11 @@ export default function SignIn() {
           pathname: "/DataProduksiBeras/getDataProduksiBeras",
         });
       }
-    } else {
-      alert(`gagal login : ${data.data.message}`);
-    }
-
     localStorage.setItem("token", data.header);
     localStorage.setItem("role", data.data.roles[0]);
+    }
+
+    
   }
 
   return (

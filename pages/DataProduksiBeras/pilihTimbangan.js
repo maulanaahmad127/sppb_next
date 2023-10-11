@@ -1,28 +1,23 @@
   import Layout from "../../components/layout";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
 import firebaseApp from "../../services/firebase-sdk";
-import { useRouter } from "next/router";
+import Router from "next/router";
 
 export default function inputBeratBeras() {
   const [isLoading, setIsLoading] = useState(true);
-  const [refreshToken, setRefreshToken] = useState(Math.random());
-  const snapshot = useRef(null);
-  const error = useRef(null);
-  const router = useRouter();
-  const {
-    query: { timbangan },
-  } = router;
-
+  const [timbangan, setTimbangan] = useState(null);
+  const [listTimbangan, setListTimbangan] = useState(null);
 
   const getValue = async () => {
     try {
       
       const database = getDatabase(firebaseApp);
       const rootReference = ref(database);
-      const dbGet = await get(child(rootReference, timbangan));
+      const dbGet = await get(rootReference);
       const dbValue  = dbGet.val();
-      snapshot.current = dbValue;
+      setListTimbangan(dbValue);
+      setTimbangan(Object.keys(dbValue).at(0));
       
     } catch (getError) {
       error.current = getError.message;
@@ -32,8 +27,7 @@ export default function inputBeratBeras() {
 
   useEffect(() => {
     getValue();
-    setTimeout(() => setRefreshToken(Math.random()), 3000);
-  }, [refreshToken]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -46,17 +40,15 @@ export default function inputBeratBeras() {
       </>
     );
   }
-
-  const beratBerasInput = snapshot.current;
   
 
   async function onClickHandle() {
-    router.push(
+    Router.push(
       {
-        pathname: "/DataProduksiBeras/addDataProduksiBeras",
-        query: { beratBerasInput },
+        pathname: "/DataProduksiBeras/inputBeratBeras",
+        query: { timbangan },
       },
-      "/DataProduksiBeras/addDataProduksiBeras"
+      "/DataProduksiBeras/inputBeratBeras"
     );
   }
 
@@ -64,11 +56,31 @@ export default function inputBeratBeras() {
     <Layout>
       <div className="rounded-sm border w-1/2 bg-white shadow">
         <div className="border-b py-4 px-6">
-          <h1 className="font-medium">Membaca Input Beras Pada {timbangan}</h1>
+          <h1 className="font-medium">Daftar Timbangan Beras</h1>
         </div>
         <div className="p-5 text-center">
-        <h1 className="mb-5 font-bold">Berat Beras : {beratBerasInput} KG</h1>
-           
+        <label className="mb-2.5 block" htmlFor="petani">
+              Pilih Timbangan:
+            </label>
+            <select
+              className="w-full rounded border-[1.5px] border-stroke bg-transparent mb-4 py-3 px-5 font-medium outline-none transition focus:border-blue-500 active:border-blue-500"
+              name="timbangan"
+              id="timbangan"
+              onInputCapture={(event) => setTimbangan(event.target.value)}
+            >
+              {
+                Object.entries(listTimbangan).map(([key, value], i) => {
+                  
+                  return (
+                    <option key={key} value={key}>
+                      {key}
+                    </option>
+                    
+                  );
+                })
+                }
+            </select>
+            
           <button
             className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
             onClick={onClickHandle}

@@ -108,7 +108,7 @@ export default function formBeras() {
               </label>
               <a
                 className="flex justify-self-end rounded bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
-                href="/DataProduksiBeras/inputBeratBeras"
+                href="/DataProduksiBeras/pilihTimbangan"
               >
                 Timbang Ulang ?
               </a>

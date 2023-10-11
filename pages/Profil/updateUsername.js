@@ -1,15 +1,20 @@
 import Layout from "../../components/layout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import LayoutPetani from "../../components/layoutPetani";
 
 export default function formEditUsername() {
   const [username, setUsername] = useState(null);
   const router = useRouter();
-  let roleSignin = localStorage.getItem("role");
-  const [role, setRole] = useState(roleSignin);
+  const snapshot = useRef(null);
+  const {
+    query: { role },
+  } = router;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
+  }, []);
 
   async function getItem() {}
 
@@ -37,6 +42,7 @@ export default function formEditUsername() {
       alert(data.data.message);
     }
   }
+  
   if (role === "ROLE_PETANI") {
     return (
       <>
