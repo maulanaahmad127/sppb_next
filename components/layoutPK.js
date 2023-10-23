@@ -1,6 +1,4 @@
-import styles from "../styles/Home.module.css";
 import NavbarPK from "./navbarPK";
-import Footer from "./footer";
 
 export default function Layout({ children }) {
   return (
@@ -8,11 +6,9 @@ export default function Layout({ children }) {
       {/* main body */}
       <div className="flex h-full bg-gray-100 overflow-auto">
         {/* sidebar */}
-        <NavbarPK isOpen={sidebarOpen} toggleSidebar={handleViewSidebar} />
+        <NavbarPK />
         {/* content */}
-        <main className="w-full md:p-6 2xl:p-10">
-          {/* header */}
-          <></>
+        <main className="w-full md:ml-60 md:p-6 2xl:p-10">
           <div className="w-full flex flex-col">
             {/* children */}
             {children}

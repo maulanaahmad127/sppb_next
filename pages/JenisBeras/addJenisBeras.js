@@ -41,27 +41,29 @@ export default function formBeras() {
   return (
     <>
       <Layout>
-        <div className="rounded-sm border w-1/2 bg-white shadow">
-          <div className="border-b py-4 px-6">
-            <h1 className="font-medium">Form Input Jenis Beras</h1>
-          </div>
-          <div className="p-5">
-            <label className="mb-2.5 block" htmlFor="Jenis Beras">
-              Jenis Beras
-            </label>
-            <input
-              className="w-full rounded border-[1.5px] border-stroke bg-transparent mb-4 py-3 px-5 font-medium outline-none transition focus:border-blue-500 active:border-blue-500"
-              type="text"
-              name="Nama Jenis Beras"
-              placeholder="Nama Jenis Beras"
-              onChange={(event) => setNama(event.target.value)}
-            />
-            <button
-              className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
-              onClick={handleSubmit}
-            >
-              Submit
-            </button>
+        <div className="flex max-md:justify-center max-md:mt-12">
+          <div className="rounded-sm border w-1/2 bg-white shadow">
+            <div className="border-b py-4 px-6">
+              <h1 className="font-medium">Form Input Jenis Beras</h1>
+            </div>
+            <div className="p-5">
+              <label className="mb-2.5 block" htmlFor="Jenis Beras">
+                Jenis Beras
+              </label>
+              <input
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent mb-4 py-3 px-5 font-medium outline-none transition focus:border-blue-500 active:border-blue-500"
+                type="text"
+                name="Nama Jenis Beras"
+                placeholder="Nama Jenis Beras"
+                onChange={(event) => setNama(event.target.value)}
+              />
+              <button
+                className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </Layout>

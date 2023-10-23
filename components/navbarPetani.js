@@ -1,34 +1,73 @@
 import Link from "next/link";
+import { Disclosure } from "@headlessui/react";
+import React from "react";
 import { useRouter } from "next/router";
-import { useContext } from "react";
-import { SidebarContext } from "../context/navbarContext";
 
 const Navbar = () => {
   const router = useRouter();
-  const { isCollapsed, toggleSidebarcollapse } = useContext(SidebarContext);
 
   return (
-    <>
-      <div className="relative h-full">
-        <aside
-          className="left-0 top-0 bottom-0 h-screen flex w-60 flex-col bg-indigo-900 duration-300 ease-linear lg:block lg:translate-x-0"
-          data-collapsed={isCollapsed}
+    <div>
+      <Disclosure as="nav" defaultOpen="true">
+        {/* toggle button */}
+        <Disclosure.Button className="absolute top-4 left-6 inline-flex peer cursor-pointer rounded-md md:hidden p-2 hover:bg-indigo-800 active:bg-indigo-800 text-white bg-indigo-900">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-menu-2"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 6l16 0"></path>
+            <path d="M4 12l16 0"></path>
+            <path d="M4 18l16 0"></path>
+          </svg>
+        </Disclosure.Button>
+
+        {/* sidebar container start */}
+        <Disclosure.Panel
+          as="div"
+          className="h-screen -left-96 bg-indigo-900 z-20 fixed top-0 px-4 md:left-0 w-60 peer-focus:left-0 peer:transition ease-out delay-150 duration-200"
         >
-          <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5"></div>
-          {/* sidebar logo */}
-          <div className="flex items-center justify-center py-3">
-            <div className="inline-flex">
-              {/* insert logo */}
-              <a href="#" className="inline-flex flex-row items-center">
-                <span className=" leading-10 text-4x1 text-white font-bold font-large ml-1">
-                  SPPB
-                </span>
-              </a>
+          {/* sidebar head */}
+          <div className="flex items-center justify-between py-5">
+            <div className="flex">
+              {/* title */}
+              <h1 className="text-white font-bold text-md text-center ml-20">
+                SPPB
+              </h1>
+            </div>
+            <div className="flex justify-end">
+              {/* toggle button */}
+              <Disclosure.Button className="md:hidden text-white align-middle">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-x"
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M18 6l-12 12"></path>
+                  <path d="M6 6l12 12"></path>
+                </svg>
+              </Disclosure.Button>
             </div>
           </div>
 
           {/* sidebar item */}
-          <div className="sidebar-content px-4 py-4">
+          <div className="sidebar-content pt-5">
             <ul className="flex flex-col w-full gap-1">
               <li>
                 <Link
@@ -44,7 +83,8 @@ const Navbar = () => {
                 <Link
                   href="/DataProduksiBeras/getDataProduksiBerasByPetani"
                   className={`flex items-center py-2 px-3 rounded-lg text-white text-base cursor-pointer hover:bg-indigo-500  ${
-                    router.pathname == "/DataProduksiBeras/getDataProduksiBerasByPetani"
+                    router.pathname ==
+                    "/DataProduksiBeras/getDataProduksiBerasByPetani"
                       ? "bg-indigo-700"
                       : ""
                   } `}
@@ -75,9 +115,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-        </aside>
-      </div>
-    </>
+        </Disclosure.Panel>
+      </Disclosure>
+    </div>
   );
 };
 export default Navbar;

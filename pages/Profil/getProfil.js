@@ -34,7 +34,7 @@ export default function Dashboard() {
     return (
       <>
         <LayoutPetani>
-        <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+        <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
             <h2 className="font-bold text-2xl mt-4">Profil Pengguna</h2>
             <div className="max-lg:my-3">
             <div className="flex justify-end items-strecth rounded-lg">
@@ -110,7 +110,7 @@ export default function Dashboard() {
     return (
       <>
         <Layout>
-          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
             <h2 className="font-bold text-2xl mt-4">Profil Pengguna</h2>
             <div className="max-lg:my-3">
             <div className="flex justify-end items-strecth rounded-lg">

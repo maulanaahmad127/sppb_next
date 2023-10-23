@@ -178,7 +178,7 @@ export default function Dashboard() {
           </div>
         </Dialog>
         <Layout>
-          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
             <h2 className="font-bold text-2xl my-4">Log Data Jenis Beras</h2>
 
             <div className="container pt-2.5 mb-2.5">
@@ -356,7 +356,7 @@ export default function Dashboard() {
     return (
       <>
         <Layout>
-          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
             <h2 className="font-bold text-2xl my-4">Log Data Jenis Beras</h2>
 
             <div className="container pt-2.5 mb-2.5">

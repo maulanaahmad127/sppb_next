@@ -1,5 +1,4 @@
 import Navbar from "./navbar";
-import { useState } from "react";
 
 export const metadata = {
   title: "Sistem Pencatatan Produksi Beras",
@@ -7,25 +6,17 @@ export const metadata = {
 };
 
 export default function Layout({ children }) {
-  const [sidebarOpen, setSideBarOpen] = useState(false);
-  const handleViewSidebar = () => {
-    setSideBarOpen(!sidebarOpen);
-  };
   
   return (
     <>
       {/* main body */}
-      <div className="flex h-full bg-gray-100">
+      <div className="flex h-full bg-gray-100 overflow-auto">
         {/* sidebar */}
-        <Navbar isOpen={sidebarOpen} toggleSidebar={handleViewSidebar}/>
+        <Navbar />
         {/* content */}
-        <main className="w-full md:p-6 2xl:p-10">
-          {/* header */}
-          <></>
-          <div className="w-full flex flex-col">
+        <main className="w-full md:ml-60 md:p-6">
             {/* children */}
             {children}
-          </div>
         </main>
       </div>
     </>
