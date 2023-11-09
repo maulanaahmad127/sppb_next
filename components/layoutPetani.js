@@ -14,7 +14,7 @@ export default function Layout({ children }) {
         {/* sidebar */}
         <NavbarPetani />
         {/* content */}
-        <main className="w-full md:p-6 2xl:p-10">
+        <main className="w-full md:ml-60 md:p-6 overflow-auto">
             {/* children */}
             {children}
         </main>

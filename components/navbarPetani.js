@@ -69,7 +69,7 @@ const Navbar = () => {
           {/* sidebar item */}
           <div className="sidebar-content pt-5">
             <ul className="flex flex-col w-full gap-1">
-              <li>
+              {/* <li>
                 <Link
                   href="/"
                   className={`flex items-center py-2 px-3 rounded-lg text-white text-base cursor-pointer hover:bg-indigo-500  ${
@@ -78,7 +78,7 @@ const Navbar = () => {
                 >
                   Beranda
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/DataProduksiBeras/getDataProduksiBerasByPetani"

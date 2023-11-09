@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import styles from "../../styles/dashboard.module.css";
 
-export default function editStok() {
+export default function EditStok() {
   const [content, setContent] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -88,7 +88,7 @@ export default function editStok() {
     <>
       <Layout>
         <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <h2 className="font-bold text-2xl my-4">
+          <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">
             Data Produksi Beras yang Belum Terjual
           </h2>
           <form className="flex justify-end items-strecth w-full mb-5">

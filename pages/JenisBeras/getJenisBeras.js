@@ -179,7 +179,7 @@ export default function Dashboard() {
         </Dialog>
         <Layout>
           <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold text-2xl my-4">Log Data Jenis Beras</h2>
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Log Data Jenis Beras</h2>
 
             <div className="container pt-2.5 mb-2.5">
               <div className="inline-flex justify-between w-full mb-5 gap-3">
@@ -357,7 +357,7 @@ export default function Dashboard() {
       <>
         <Layout>
           <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold text-2xl my-4">Log Data Jenis Beras</h2>
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Log Data Jenis Beras</h2>
 
             <div className="container pt-2.5 mb-2.5">
               <div className="flex justify-end items-strecth mb-5">

@@ -3,8 +3,9 @@ import { useState, useRef, useEffect } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
 import firebaseApp from "../../services/firebase-sdk";
 import Router from "next/router";
+import Link from "next/link";
 
-export default function inputBeratBeras() {
+export default function InputBeratBeras() {
   const [isLoading, setIsLoading] = useState(true);
   const [refreshToken, setRefreshToken] = useState(Math.random());
   const snapshot = useRef(null);
@@ -34,7 +35,7 @@ export default function inputBeratBeras() {
       <>
         <p className="text-center items-center">
           <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
-            <div class="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-24 w-24"></div>
+            <div class="border-t-transparent border-solid animate-spin rounded-full border-blue-500 border-8 h-24 w-24"></div>
           </div>
         </p>
       </>
@@ -57,8 +58,30 @@ export default function inputBeratBeras() {
     <Layout>
       <div className="flex max-md:justify-center max-md:mt-12">
         <div className="rounded-sm border w-1/2 bg-white shadow">
-          <div className="border-b py-4 px-6">
-            <h1 className="font-medium">Berhasil Membaca Input Beras</h1>
+          <div className="border-b py-4 px-6 flex justify-between">
+            <h1 className="font-medium self-center">Berhasil Membaca Input Beras</h1>
+            <Link
+                className="p-1 border rounded-sm hover:shadow-md"
+                href="/DataProduksiBeras/getDataProduksiBeras"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-arrow-left"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M5 12l14 0"></path>
+                  <path d="M5 12l6 6"></path>
+                  <path d="M5 12l6 -6"></path>
+                </svg>
+              </Link>
           </div>
           <div className="p-5 text-center">
             <h2 className="mb-4 font-bold">{beratBerasInput} Kg</h2>

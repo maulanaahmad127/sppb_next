@@ -4,7 +4,7 @@ import Layout from "../../components/layout";
 import Link from "next/link";
 import FileSaver from 'file-saver';
 
-export default function editStok() {
+export default function EditStok() {
   const [content, setContent] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -75,7 +75,7 @@ export default function editStok() {
       <>
         <Layout>
           <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold text-2xl my-4">Data Stok Beras</h2>
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Data Stok Beras</h2>
             <div className="container pt-2.5">
               <div className="inline-flex justify-between w-full mb-5">
                 <Link
@@ -189,7 +189,7 @@ export default function editStok() {
       <>
         <Layout>
           <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold text-2xl my-4">Data Stok Beras</h2>
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Data Stok Beras</h2>
             <div className="container pt-2.5">
               <button
                 className="inline-flex items-stretch rounded bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 mb-5 cursor-pointer"

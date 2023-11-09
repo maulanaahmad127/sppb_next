@@ -57,7 +57,7 @@ export default function getDataProduksiBeras() {
     <>
       <LayoutPetani>
         <div className="px-6 md:pt-9 pt-13 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <h2 className="font-bold text-2xl my-4">
+          <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">
             Log Data Produksi Beras oleh Petani
           </h2>
 
