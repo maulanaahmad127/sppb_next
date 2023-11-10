@@ -130,12 +130,12 @@ export default function FormBeras() {
                 <label className="flex" htmlFor="Berat Beras">
                   Berat Beras :
                 </label>
-                <a
+                <Link
                   className="flex justify-self-end rounded bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                   href="/DataProduksiBeras/pilihTimbangan"
                 >
                   Timbang Ulang ?
-                </a>
+                </Link>
               </div>
               <input
                 className="w-full rounded border-[1.5px] bg-transparent mb-4 py-3 px-5 font-medium outline-none transition disabled:text-slate-600 disabled:bg-gray-200"
