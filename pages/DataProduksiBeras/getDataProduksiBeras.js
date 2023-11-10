@@ -5,7 +5,7 @@ import Layout from "../../components/layout";
 import { Dialog } from "@headlessui/react";
 import FileSaver from "file-saver";
 
-export default function getDataProduksiBeras() {
+export default function GetDataProduksiBeras() {
   const [content, setContent] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);

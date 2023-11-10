@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-export default function formBeras() {
+export default function FormBeras() {
   const [petani, setPetani] = useState(null);
   const [idPetani, setIdPetani] = useState(null);
   const [jenisBeras, setJenisBeras] = useState(null);
