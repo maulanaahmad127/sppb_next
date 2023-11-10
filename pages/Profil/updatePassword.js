@@ -1,5 +1,5 @@
 import Layout from "../../components/layout";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import LayoutPetani from "../../components/layoutPetani";
 import Link from "next/link";
@@ -7,11 +7,14 @@ import Link from "next/link";
 export default function FormEditPassword() {
   const [passwordLama, setPasswordLama] = useState(null);
   const [passwordBaru, setPasswordBaru] = useState(null);
-  let roleSignin = localStorage.getItem("role");
-  const [role, setRole] = useState(roleSignin);
+  const [passwordBaruConfirmation, setPasswordBaruConfirmation] = useState(null);
   const router = useRouter();
+  const {
+    query: { role },
+  } = router;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+  }, []);
 
   async function getItem() {}
 
@@ -27,6 +30,7 @@ export default function FormEditPassword() {
       body: JSON.stringify({
         passwordLama: passwordLama,
         passwordBaru: passwordBaru,
+        passwordBaruConfirmation : passwordBaruConfirmation
       }),
     };
     const url = "../api/Profil/updatePasswordHandler";
@@ -40,6 +44,7 @@ export default function FormEditPassword() {
       alert(data.data.message);
     }
   }
+
   if (role === "ROLE_PETANI") {
     return (
       <>
@@ -94,6 +99,17 @@ export default function FormEditPassword() {
                   value={passwordBaru}
                   onChange={(event) => setPasswordBaru(event.target.value)}
                 />
+              <label className="mb-2.5 block" htmlFor="passnew">
+                Input Konfirmasi Password Baru
+              </label>
+              <input
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent mb-4 py-3 px-5 font-medium outline-none transition focus:border-blue-500 active:border-blue-500"
+                type="password"
+                name="Password Baru"
+                placeholder="Password Baru"
+                value={passwordBaruConfirmation}
+                onChange={(event) => setPasswordBaruConfirmation(event.target.value)}
+              />
                 <button
                   className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
                   onClick={handleSubmit}
@@ -160,6 +176,17 @@ export default function FormEditPassword() {
                   value={passwordBaru}
                   onChange={(event) => setPasswordBaru(event.target.value)}
                 />
+              <label className="mb-2.5 block" htmlFor="passnew">
+                Input Konfirmasi Password Baru
+              </label>
+              <input
+                className="w-full rounded border-[1.5px] border-stroke bg-transparent mb-4 py-3 px-5 font-medium outline-none transition focus:border-blue-500 active:border-blue-500"
+                type="password"
+                name="Password Baru"
+                placeholder="Password Baru"
+                value={passwordBaruConfirmation}
+                onChange={(event) => setPasswordBaruConfirmation(event.target.value)}
+              />
                 <button
                   className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
                   onClick={handleSubmit}

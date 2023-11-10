@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Router from "next/router";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
@@ -12,8 +12,7 @@ export default function GetDataProduksiBeras() {
   const [totalPage, setTotalPage] = useState(null);
   const [search, setSearch] = useState("");
   const [isDeleted, setIsDeleted] = useState(false);
-  let roleSignin = localStorage.getItem("role");
-  const [role, setRole] = useState(roleSignin);
+  const snapshot = useRef(null);
   let [isOpen, setIsOpen] = useState(false);
   const [targetId, setTargetId] = useState();
 
@@ -23,7 +22,8 @@ export default function GetDataProduksiBeras() {
 
   async function fetchContent() {
     const tokenx = localStorage.getItem("token");
-
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
     const options = {
       method: "POST",
       headers: {
@@ -47,11 +47,10 @@ export default function GetDataProduksiBeras() {
     setContent(listData);
   }
 
-  async function pagginationHandler(event) {
-    const curpage = event.selected;
-    console.log(`page : ${curpage}`);
-    setPage(curpage);
-  }
+   const pagginationHandler = async ({selected}) => {
+    console.log(selected);
+    setPage(selected);
+   }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -60,7 +59,7 @@ export default function GetDataProduksiBeras() {
   function handleInput(event) {
     event.preventDefault();
     Router.push({
-      pathname: "/DataProduksiBeras/inputBeratBeras",
+      pathname: "/DataProduksiBeras/pilihTimbangan",
     });
   }
 
@@ -108,6 +107,7 @@ export default function GetDataProduksiBeras() {
     );
   }
 
+
   async function handleDelete(event) {
     event.preventDefault();
     let idx = event.target.value;
@@ -137,7 +137,7 @@ export default function GetDataProduksiBeras() {
       alert(data.data.message);
     }
   }
-
+  const role = snapshot.current;
   console.log(`role nya seusuai${role}`);
   if (role === "ROLE_ADMIN") {
     return (
@@ -429,7 +429,6 @@ export default function GetDataProduksiBeras() {
                   nextLabel={">"}
                   previousLabel={"<"}
                   previousClassName={"item previous"}
-                  initialPage={page}
                   pageCount={totalPage}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
@@ -574,11 +573,12 @@ export default function GetDataProduksiBeras() {
                   nextLabel={">"}
                   previousLabel={"<"}
                   previousClassName={"item previous"}
-                  initialPage={page}
+                  // initialPage={page}
                   pageCount={totalPage}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
                   onPageChange={pagginationHandler}
+                  disableInitialCallback={true}
                 />
               </div>
             </div>

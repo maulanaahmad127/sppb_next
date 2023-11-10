@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Router from "next/router";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
@@ -11,8 +11,7 @@ export default function Dashboard() {
   const [totalPage, setTotalPage] = useState(null);
   const [search, setSearch] = useState("");
   const [isDeleted, setIsDeleted] = useState(false);
-  let roleSignin = localStorage.getItem("role");
-  const [role, setRole] = useState(roleSignin);
+  const snapshot = useRef(null);
   let [isOpen, setIsOpen] = useState(false);
   const [targetId, setTargetId] = useState();
 
@@ -22,7 +21,8 @@ export default function Dashboard() {
 
   async function fetchContent() {
     const tokenx = localStorage.getItem("token");
-
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
     const options = {
       method: "POST",
       headers: {
@@ -115,6 +115,8 @@ export default function Dashboard() {
       alert(data.data.message);
     }
   }
+  const role = snapshot.current;
+  console.log(`role jenis beras ${role}`)
   if (role === "ROLE_ADMIN") {
     return (
       <>

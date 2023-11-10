@@ -8,6 +8,7 @@ const handler = async (req, res) => {
   const email = req.body.email;
   const role = req.body.role;
   const password = req.body.password;
+  const passwordConfirmation = req.body.passwordConfirmation;
 
   let postbody = {
     username: username,
@@ -17,6 +18,7 @@ const handler = async (req, res) => {
     email: email,
     role: [role],
     password: password,
+    passwordConfirmation: passwordConfirmation
   };
   const options = {
     method: method,

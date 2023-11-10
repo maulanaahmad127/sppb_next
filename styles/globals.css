@@ -5,9 +5,9 @@
 .item {
   align-items: center;
   color: black;
-  cursor: pointer;
+  
   display: flex;
-  font-size: 14px;
+  font-size: 25px;
   height: 40px;
   justify-content: center;
   width: 40px;
@@ -37,6 +37,7 @@
   position: relative;
   width: auto;
   gap: 5px;
+  cursor: pointer;
 }
 
 .previous:hover,
@@ -54,7 +55,7 @@
 }
 
 .previous {
-  font-size: 20px;
+  font-size: 25px;
   height: flex;
   margin-right: 8px;
   position: left;
@@ -65,7 +66,7 @@
 }
 
 .next {
-  font-size: 20px;
+  font-size: 25px;
   height: flex;
   margin-left: 8px;
   position: right;

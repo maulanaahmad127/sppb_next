@@ -1,8 +1,8 @@
-import Layout from "../../components/layout";
+  import Layout from "../../components/layout";
 import { useState, useRef, useEffect } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
 import firebaseApp from "../../services/firebase-sdk";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function InputBeratBeras() {
@@ -10,15 +10,21 @@ export default function InputBeratBeras() {
   const [refreshToken, setRefreshToken] = useState(Math.random());
   const snapshot = useRef(null);
   const error = useRef(null);
+  const router = useRouter();
+  const {
+    query: { timbangan },
+  } = router;
+
 
   const getValue = async () => {
     try {
-      console.log(process.env.NEXT_PUBLIC_DATABASE_URL);
+      
       const database = getDatabase(firebaseApp);
       const rootReference = ref(database);
-      const dbGet = await get(child(rootReference, "timbangan1"));
-      const dbValue = dbGet.val();
+      const dbGet = await get(child(rootReference, timbangan));
+      const dbValue  = dbGet.val();
       snapshot.current = dbValue;
+      
     } catch (getError) {
       error.current = getError.message;
     }
@@ -33,19 +39,20 @@ export default function InputBeratBeras() {
   if (isLoading) {
     return (
       <>
-        <p className="text-center items-center">
-          <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
-            <div class="border-t-transparent border-solid animate-spin rounded-full border-blue-500 border-8 h-24 w-24"></div>
+        <div className="text-center items-center">
+          <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+            <div className="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-24 w-24"></div>
           </div>
-        </p>
+        </div>
       </>
     );
   }
 
   const beratBerasInput = snapshot.current;
+  
 
   async function onClickHandle() {
-    Router.push(
+    router.push(
       {
         pathname: "/DataProduksiBeras/addDataProduksiBeras",
         query: { beratBerasInput },
@@ -59,7 +66,7 @@ export default function InputBeratBeras() {
       <div className="flex max-md:justify-center max-md:mt-12">
         <div className="rounded-sm border w-1/2 bg-white shadow">
           <div className="border-b py-4 px-6 flex justify-between">
-            <h1 className="font-medium self-center">Berhasil Membaca Input Beras</h1>
+            <h1 className="font-medium self-center">Membaca Input Beras Pada {timbangan}</h1>
             <Link
                 className="p-1 border rounded-sm hover:shadow-md"
                 href="/DataProduksiBeras/getDataProduksiBeras"
@@ -84,7 +91,8 @@ export default function InputBeratBeras() {
               </Link>
           </div>
           <div className="p-5 text-center">
-            <h2 className="mb-4 font-bold">{beratBerasInput} Kg</h2>
+          <h1 className="mb-5 font-bold">Berat Beras : {beratBerasInput} KG</h1>
+           
             <button
               className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
               onClick={onClickHandle}

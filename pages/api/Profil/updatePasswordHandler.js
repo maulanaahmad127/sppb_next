@@ -5,10 +5,12 @@ const handler = async (req, res) => {
     const token = req.headers.x;
     const passwordLama = req.body.passwordLama;
     const passwordBaru = req.body.passwordBaru;
+    const passwordBaruConfirmation = req.body.passwordBaruConfirmation;
 
       let postbody = {
         'passwordLama': passwordLama,
         'passwordBaru': passwordBaru,
+        'passwordBaruConfirmation' : passwordBaruConfirmation
       }
       const options = {
         method: method,
