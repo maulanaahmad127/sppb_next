@@ -9,6 +9,11 @@ export default function Layout({ children }) {
 
   return (
     <>
+    <Head>
+        <title>Sistem Pencatatan Produksi Beras</title>
+        <meta name="description" content="Full Stack Book JWT" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {/* main body */}
       <div className="flex h-full bg-gray-100 overflow-auto">
         {/* sidebar */}

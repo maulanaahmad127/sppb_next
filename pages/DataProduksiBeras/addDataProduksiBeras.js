@@ -22,7 +22,7 @@ export default function FormBeras() {
     fetchPetani();
     fetchJenisBeras();
     getItem();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function fetchPetani() {
     const tokenx = localStorage.getItem("token");
