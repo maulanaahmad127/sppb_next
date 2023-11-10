@@ -1,5 +1,6 @@
 import NavbarPetani from './navbarPetani';
 import { useState } from 'react';
+import Head from "next/head";
 
 export default function Layout({ children }) {
   const [sidebarOpen, setSideBarOpen] = useState(false);
