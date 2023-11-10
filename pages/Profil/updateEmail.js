@@ -63,7 +63,7 @@ export default function FormEditEmail() {
               <div className="border-b py-4 px-6 flex justify-between">
                 <h1 className="font-medium self-center">Form Edit Email</h1>
                 <Link
-                className="p-1 border rounded-sm hover:shadow-md"
+                className="p-1 border rounded-sm hover:bg-gray-500 hover:text-white"
                 href="/Profil/getProfil"
               >
                 <svg
@@ -131,7 +131,7 @@ export default function FormEditEmail() {
               <div className="border-b py-4 px-6 flex justify-between">
                 <h1 className="font-medium self-center">Form Edit Email</h1>
                 <Link
-                className="p-1 border rounded-sm hover:shadow-md"
+                className="p-1 border rounded-sm hover:bg-gray-500 hover:text-white"
                 href="/Profil/getProfil"
               >
                 <svg

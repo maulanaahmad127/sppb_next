@@ -50,8 +50,30 @@ export default function FormEditUsername() {
         <LayoutPetani>
           <div className="flex max-md:justify-center max-md:mt-12">
             <div className="rounded-sm border w-1/2 bg-white shadow">
-              <div className="border-b py-4 px-6">
-                <h1 className="font-medium">Form Edit Username</h1>
+              <div className="border-b py-4 px-6 flex justify-between">
+                <h1 className="font-medium self-center">Form Edit Username</h1>
+                <Link
+                className="p-1 border rounded-sm hover:bg-gray-500 hover:text-white"
+                href="/Profil/getProfil"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-arrow-left"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M5 12l14 0"></path>
+                  <path d="M5 12l6 6"></path>
+                  <path d="M5 12l6 -6"></path>
+                </svg>
+              </Link>
               </div>
               <div className="p-5">
                 <label className="mb-2.5 block" htmlFor="nama">
@@ -86,7 +108,7 @@ export default function FormEditUsername() {
               <div className="border-b py-4 px-6 flex justify-between">
                 <h1 className="font-medium self-center">Form Edit Username</h1>
                 <Link
-                className="p-1 border rounded-sm hover:shadow-md"
+                className="p-1 border rounded-sm hover:bg-gray-500 hover:text-white"
                 href="/Profil/getProfil"
               >
                 <svg

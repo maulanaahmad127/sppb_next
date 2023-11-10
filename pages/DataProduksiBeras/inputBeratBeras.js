@@ -1,4 +1,4 @@
-  import Layout from "../../components/layout";
+import Layout from "../../components/layout";
 import { useState, useRef, useEffect } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
 import firebaseApp from "../../services/firebase-sdk";
@@ -15,16 +15,13 @@ export default function InputBeratBeras() {
     query: { timbangan },
   } = router;
 
-
   const getValue = async () => {
     try {
-      
       const database = getDatabase(firebaseApp);
       const rootReference = ref(database);
       const dbGet = await get(child(rootReference, timbangan));
-      const dbValue  = dbGet.val();
+      const dbValue = dbGet.val();
       snapshot.current = dbValue;
-      
     } catch (getError) {
       error.current = getError.message;
     }
@@ -49,7 +46,6 @@ export default function InputBeratBeras() {
   }
 
   const beratBerasInput = snapshot.current;
-  
 
   async function onClickHandle() {
     router.push(
@@ -66,33 +62,37 @@ export default function InputBeratBeras() {
       <div className="flex max-md:justify-center max-md:mt-12">
         <div className="rounded-sm border w-1/2 bg-white shadow">
           <div className="border-b py-4 px-6 flex justify-between">
-            <h1 className="font-medium self-center">Membaca Input Beras Pada {timbangan}</h1>
+            <h1 className="font-medium self-center">
+              Membaca Input Beras Pada {timbangan}
+            </h1>
             <Link
-                className="p-1 border rounded-sm hover:shadow-md"
-                href="/DataProduksiBeras/getDataProduksiBeras"
+              className="p-1 border rounded-sm hover:bg-gray-500 hover:text-white"
+              href="/DataProduksiBeras/pilihTimbangan"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-arrow-left"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="icon icon-tabler icon-tabler-arrow-left"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  stroke-width="2"
-                  stroke="currentColor"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                  <path d="M5 12l14 0"></path>
-                  <path d="M5 12l6 6"></path>
-                  <path d="M5 12l6 -6"></path>
-                </svg>
-              </Link>
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M5 12l14 0"></path>
+                <path d="M5 12l6 6"></path>
+                <path d="M5 12l6 -6"></path>
+              </svg>
+            </Link>
           </div>
           <div className="p-5 text-center">
-          <h1 className="mb-5 font-bold">Berat Beras : {beratBerasInput} KG</h1>
-           
+            <h1 className="mb-5 font-bold">
+              Berat Beras : {beratBerasInput} KG
+            </h1>
+
             <button
               className="flex w-full justify-center rounded bg-blue-500 hover:opacity-80 active:bg-blue-700 p-3 font-medium text-white"
               onClick={onClickHandle}
