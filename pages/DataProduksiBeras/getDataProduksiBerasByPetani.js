@@ -5,7 +5,7 @@ import Layout from "../../components/layout";
 import LayoutPetani from "../../components/layoutPetani";
 import styles from "../../styles/dashboard.module.css";
 
-export default function getDataProduksiBeras() {
+export default function GetDataProduksiBeras() {
   const [content, setContent] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -56,8 +56,8 @@ export default function getDataProduksiBeras() {
   return (
     <>
       <LayoutPetani>
-        <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <h2 className="font-bold text-2xl my-4">
+        <div className="px-6 md:pt-9 pt-13 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+          <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">
             Log Data Produksi Beras oleh Petani
           </h2>
 

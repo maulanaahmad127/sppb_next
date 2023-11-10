@@ -1,10 +1,61 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import React from "react";
+import { Disclosure } from "@headlessui/react";
 
 export default function Navbar() {
   return (
-    <>
-      <header>
-        <ul>
+    <div>
+      <Disclosure as="nav" defaultOpen="true">
+        <Disclosure.Button className="absolute top-4 left-4 inline-flex peer cursor-pointer rounded-md md:hidden p-2 hover:bg-indigo-800 active:bg-indigo-800 text-white bg-indigo-900">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-menu-2"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M4 6l16 0"></path>
+            <path d="M4 12l16 0"></path>
+            <path d="M4 18l16 0"></path>
+          </svg>
+        </Disclosure.Button>
+        <Disclosure.Panel
+          as="div"
+          className="h-screen w-2/5 -left-96 bg-indigo-900 z-20 fixed top-0 md:left-0 md:w-60 peer-focus:left-0 peer:transition ease-out delay-150 duration-200"
+        >
+          <div className="flex-row flex p-3 items-center justify-between">
+            <h1 className="text-white font-bold text-center pl-5">SPPB</h1>
+            <Disclosure.Button className="md:hidden text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-x"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M18 6l-12 12"></path>
+                <path d="M6 6l12 12"></path>
+              </svg>
+            </Disclosure.Button>
+          </div>
+        </Disclosure.Panel>
+      </Disclosure>
+
+      {/* 
+<ul>
           <li><Link href="/">Beranda</Link></li>
           <li><Link href="/DataProduksiBeras/getDataProduksiBeras">Data Beras</Link></li>
           
@@ -19,95 +70,9 @@ export default function Navbar() {
               <li><Link href="/Profil/updateUsername">Edit Username</Link></li>
             </ul>
           </li>
-          <li style={{ float: "right" }}><Link href="/signout">Logout</Link></li>
+          <li><Link href="/signout">Logout</Link></li>
         </ul>
-      </header>
-
-      <style jsx global>{`
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #ababab;
-          }
-
-          li {
-            color: white;
-            float: left;
-          }
-
-          li a {
-            display: block;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-          }
-
-          li ul {
-            display: none;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            position: absolute;
-            width: flex;
-            
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-        li ul a {
-          display: block;
-          float: none;
-          background-color: inherit;
-          font-family: inherit; /* Important for vertical align on mobile phones */
-          margin: 0;
-        }
-
-        li:hover ul {
-          display: block;
-      }
-
-          li a:hover {
-            color: white;
-            background-color: #333;
-          }
-
-          li a.active {
-            background-color:#680000; 
-            color:#a2becf
-
-          }
-
-          li a:hover:not(.active) {
-            background-color: #333;
-          }
-
-          li:first-child a { border-left:0; }
-          li:last-child a { border-right:0; }
-
-          @media screen and (max-width: 400px) {
-            li a {
-              text-align: center;
-              float: none;
-            }
-          }
-
-          @media screen and (max-width: 900px) {
-            ul {
-              width: 100%;
-              height: auto;
-              position: relative;
-            }
-            
-            li a {
-              float: left;
-              padding: 15px;
-            }
-          }
-
-        `}</style>
-
-    </>
-  )
+*/}
+    </div>
+  );
 }

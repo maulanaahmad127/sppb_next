@@ -1,5 +1,6 @@
 import Router from "next/router";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -41,7 +42,7 @@ export default function SignUp() {
         pathname: "/signin",
       });
     } else {
-      alert(`gagal signup : ${data.data.message}`);
+      alert(`Gagal sign up : ${data.data.message}`);
     }
     localStorage.setItem("token", data.header);
   }
@@ -443,9 +444,9 @@ export default function SignUp() {
             </button>
             <p className="mt-6 text-center">
               Sudah punya akun?{" "}
-              <a href="/signin" className="text-indigo-700 underline">
+              <Link href="/signin" className="text-indigo-700 underline">
                 Masuk
-              </a>
+              </Link>
             </p>
           </div>
         </div>

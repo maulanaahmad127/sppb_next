@@ -3,9 +3,9 @@ import Router from "next/router";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import { Dialog } from "@headlessui/react";
-import FileSaver from 'file-saver';
+import FileSaver from "file-saver";
 
-export default function getDataProduksiBeras() {
+export default function GetDataProduksiBeras() {
   const [content, setContent] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -86,8 +86,8 @@ export default function getDataProduksiBeras() {
     try {
       const pdf = await fetch(url, options);
       const file = await pdf.blob();
-      let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}` 
-      let fileName =  `data_produksi_beras${currentDate}`
+      let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+      let fileName = `data_produksi_beras${currentDate}`;
       FileSaver(file, fileName);
     } catch (error) {
       console.log(error);
@@ -202,8 +202,8 @@ export default function getDataProduksiBeras() {
           </div>
         </Dialog>
         <Layout>
-          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold text-2xl my-4">Log Data Produksi Beras</h2>
+          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Log Data Produksi Beras</h2>
             <div className="container pt-2.5">
               <div className="inline-flex justify-between w-full mb-5 gap-3">
                 {/* button & search */}
@@ -444,8 +444,8 @@ export default function getDataProduksiBeras() {
     return (
       <>
         <Layout>
-          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold text-2xl my-4">Log Data Produksi Beras</h2>
+          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Log Data Produksi Beras</h2>
 
             <div className="container pt-2.5">
               <div className="inline-flex justify-between w-full mb-5 gap-3">

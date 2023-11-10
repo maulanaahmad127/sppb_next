@@ -3,8 +3,9 @@ import Router from "next/router";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import styles from "../../styles/dashboard.module.css";
+import Link from "next/link";
 
-export default function editStok() {
+export default function EditStok() {
   const [content, setContent] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -87,10 +88,35 @@ export default function editStok() {
   return (
     <>
       <Layout>
-        <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <h2 className="font-bold text-2xl my-4">
-            Data Produksi Beras yang Belum Terjual
-          </h2>
+        <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+          <div className="flex justify-between">
+            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4 self-center">
+              Data Produksi Beras yang Belum Terjual
+            </h2>
+            <Link
+              className="py-1 pr-3 pl-2 h-fit border rounded-md hover:bg-gray-500 hover:text-white mt-7 md:mt-4 flex"
+              href="/StokBeras/getStokBeras"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-arrow-left"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M5 12l14 0"></path>
+                <path d="M5 12l6 6"></path>
+                <path d="M5 12l6 -6"></path>
+              </svg>
+              <span className="pl-2">Kembali</span>
+            </Link>
+          </div>
           <form className="flex justify-end items-strecth w-full mb-5">
             <input
               className="rounded-l-md border bg-transparent p-1 outline-none focus:border-blue-600 focus-visible:shadow-none"
@@ -105,21 +131,21 @@ export default function editStok() {
               onClick={handleSubmit}
             >
               <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="icon icon-tabler icon-tabler-search"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      stroke-width="2"
-                      stroke="currentColor"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                      <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-                      <path d="M21 21l-6 -6"></path>
-                    </svg>
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-search"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+                <path d="M21 21l-6 -6"></path>
+              </svg>
             </button>
           </form>
 

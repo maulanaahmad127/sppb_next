@@ -1,5 +1,6 @@
 import Router from "next/router";
 import { useState, useRef } from "react";
+import Link from "next/link";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
@@ -264,9 +265,9 @@ export default function SignIn() {
             </button>
             <p className="mt-6 text-center">
               Belum punya akun?{" "}
-              <a href="/signup" className="text-indigo-700 underline">
+              <Link href="/signup" className="text-indigo-700 underline">
                 Daftar
-              </a>
+              </Link>
             </p>
           </div>
         </div>

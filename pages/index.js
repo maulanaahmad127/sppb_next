@@ -12,10 +12,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+<Layout>
         <h1>Home</h1>
         <p><Link href="/signup">Sign Up</Link></p>
         <p><Link href="/signin">Sign In</Link></p>
+        </Layout>
 
     </div>
   )
