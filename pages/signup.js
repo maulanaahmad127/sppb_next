@@ -1,6 +1,7 @@
 import Router from "next/router";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -48,6 +49,12 @@ export default function SignUp() {
   }
 
   return (
+    <>
+    <Head>
+        <title>Sign Up - Sistem Pencatatan Produksi Beras</title>
+        <meta name="description" content="Full Stack Book JWT" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
     <div className="my-10 mx-auto flex w-fit justify-center rounded-sm border border-stroke bg-white shadow-default">
       <div className="flex flex-wrap items-center">
         {/* img */}
@@ -452,5 +459,6 @@ export default function SignUp() {
         </div>
       </div>
     </div>
+    </>
   );
 }

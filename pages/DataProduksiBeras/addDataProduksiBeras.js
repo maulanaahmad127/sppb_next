@@ -22,7 +22,7 @@ export default function FormBeras() {
     fetchPetani();
     fetchJenisBeras();
     getItem();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   async function fetchPetani() {
     const tokenx = localStorage.getItem("token");
@@ -98,7 +98,7 @@ export default function FormBeras() {
   return (
     <>
       <Layout>
-        <div className="flex max-md:justify-center max-md:mt-12">
+        <div className="flex max-md:justify-center">
           <div className="rounded-sm border w-1/2 bg-white shadow">
             <div className="border-b py-4 px-6 flex justify-between">
               <h1 className="font-medium self-center">Form Input Beras</h1>

@@ -56,13 +56,13 @@ export default function GetDataProduksiBeras() {
   return (
     <>
       <LayoutPetani>
-        <div className="px-6 md:pt-9 pt-13 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">
+        <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+          <h2 className="font-bold text-2xl">
             Log Data Produksi Beras oleh Petani
           </h2>
 
           <div className="container pt-2.5">
-            <div className="flex justify-end items-strecth mb-5">
+            <div className="flex justify-end items-strecth mt-3 mb-5">
               <input
                 className="rounded-l-md border bg-transparent p-1 outline-none focus:border-blue-600 focus-visible:shadow-none"
                 type="search"
