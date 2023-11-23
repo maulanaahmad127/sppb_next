@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Layout from '../components/layout'
+import Navbar from '../components/newnav'
 
 export default function Home() {
   return (
@@ -17,7 +18,6 @@ export default function Home() {
         <p><Link href="/signup">Sign Up</Link></p>
         <p><Link href="/signin">Sign In</Link></p>
         </Layout>
-
     </div>
   )
 }

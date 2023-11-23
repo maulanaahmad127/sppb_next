@@ -88,9 +88,9 @@ export default function EditStok() {
   return (
     <>
       <Layout>
-        <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+        <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
           <div className="flex justify-between">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4 self-center">
+            <h2 className="font-bold text-2xl self-center">
               Data Produksi Beras yang Belum Terjual
             </h2>
             <Link
@@ -117,7 +117,7 @@ export default function EditStok() {
               <span className="pl-2">Kembali</span>
             </Link>
           </div>
-          <form className="flex justify-end items-strecth w-full mb-5">
+          <form className="flex justify-end items-strecth w-full mt-3 mb-5">
             <input
               className="rounded-l-md border bg-transparent p-1 outline-none focus:border-blue-600 focus-visible:shadow-none"
               type="search"

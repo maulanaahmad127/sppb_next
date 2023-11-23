@@ -75,10 +75,10 @@ export default function EditStok() {
     return (
       <>
         <Layout>
-          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Data Stok Beras</h2>
+          <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl">Data Stok Beras</h2>
             <div className="container pt-2.5">
-              <div className="inline-flex justify-between w-full mb-5">
+              <div className="inline-flex justify-between w-full mt-3 mb-5">
                 <Link
                   className="inline-flex items-stretch rounded bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                   href="/StokBeras/updateStokBeras"
@@ -189,9 +189,9 @@ export default function EditStok() {
     return (
       <>
         <Layout>
-          <div className="px-6 pt-9 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Data Stok Beras</h2>
-            <div className="container pt-2.5">
+          <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl">Data Stok Beras</h2>
+            <div className="container mt-3 pt-2.5">
               <button
                 className="inline-flex items-stretch rounded bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 mb-5 cursor-pointer"
                 onClick={handleSubmit}

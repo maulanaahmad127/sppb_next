@@ -1,20 +1,21 @@
 import NavbarPetani from './navbarPetani';
-import { useState } from 'react';
+import Head from "next/head";
 
 export default function Layout({ children }) {
-  const [sidebarOpen, setSideBarOpen] = useState(false);
-  const handleViewSidebar = () => {
-    setSideBarOpen(!sidebarOpen);
-  };
 
   return (
     <>
+    <Head>
+        <title>Sistem Pencatatan Produksi Beras</title>
+        <meta name="description" content="Full Stack Book JWT" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {/* main body */}
-      <div className="flex h-full bg-gray-100 overflow-auto">
+      <div className="bg-gray-100">
         {/* sidebar */}
         <NavbarPetani />
         {/* content */}
-        <main className="w-full md:ml-60 md:p-6 overflow-auto">
+        <main className="md:ml-60 max-md:mb-4 max-md:mt-20 max-md:mx-4 md:p-6 overflow-auto">
             {/* children */}
             {children}
         </main>

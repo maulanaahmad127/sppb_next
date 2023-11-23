@@ -180,11 +180,11 @@ export default function Dashboard() {
           </div>
         </Dialog>
         <Layout>
-          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Log Data Jenis Beras</h2>
+          <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl">Log Data Jenis Beras</h2>
 
             <div className="container pt-2.5 mb-2.5">
-              <div className="inline-flex justify-between w-full mb-5 gap-3">
+              <div className="inline-flex justify-between w-full mt-3 mb-5 gap-3">
                 <button
                   className="inline-flex items-stretch rounded bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                   onClick={addJenisBerasHandler}
@@ -358,11 +358,11 @@ export default function Dashboard() {
     return (
       <>
         <Layout>
-          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Log Data Jenis Beras</h2>
+          <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl">Log Data Jenis Beras</h2>
 
             <div className="container pt-2.5 mb-2.5">
-              <div className="flex justify-end items-strecth mb-5">
+              <div className="flex justify-end items-strecth mt-3 mb-5">
                 <input
                   className="rounded-l-md border bg-transparent p-1 outline-none focus:border-blue-600 focus-visible:shadow-none"
                   type="search"

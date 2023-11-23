@@ -10,12 +10,13 @@ const Navbar = () => {
     <div>
       <Disclosure as="nav" defaultOpen="true">
         {/* toggle button */}
-        <Disclosure.Button className="absolute top-4 left-6 inline-flex peer cursor-pointer rounded-md md:hidden p-2 hover:bg-indigo-800 active:bg-indigo-800 text-white bg-indigo-900">
+        
+        <Disclosure.Button className="absolute top-4 left-6 flex peer cursor-pointer rounded-md md:hidden p-2 hover:bg-indigo-800 active:bg-indigo-800 text-white bg-indigo-900">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="icon icon-tabler icon-tabler-menu-2"
-            width="28"
-            height="28"
+            width="24"
+            height="24"
             viewBox="0 0 24 24"
             stroke-width="2"
             stroke="currentColor"
@@ -29,6 +30,7 @@ const Navbar = () => {
             <path d="M4 18l16 0"></path>
           </svg>
         </Disclosure.Button>
+        
 
         {/* sidebar container start */}
         <Disclosure.Panel
@@ -42,7 +44,7 @@ const Navbar = () => {
               <h1 className="text-white font-bold text-md text-center ml-20">SPPB</h1>
             </div>
             <div className="flex justify-end">
-              {/* toggle button */}
+              {/* toggle button inside menu*/}
               <Disclosure.Button className="md:hidden text-white align-middle">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

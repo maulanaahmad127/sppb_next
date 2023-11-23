@@ -72,9 +72,9 @@ export default function EditStok() {
     return (
       <>
         <Layout>
-          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Data Penjualan Beras</h2>
-            <div className="container pt-2.5">
+          <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl">Data Penjualan Beras</h2>
+            <div className="container mt-3 pt-2.5">
               <button
                 className="inline-flex rounded bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 cursor-pointer mb-5"
                 onClick={handleSubmit}
@@ -174,9 +174,9 @@ export default function EditStok() {
     return (
       <>
         <Layout>
-          <div className="px-6 md:pt-9 pt-12 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-            <h2 className="font-bold pt-3 md:pt-0 text-2xl my-4">Data Penjualan Beras</h2>
-            <div className="container pt-2.5">
+          <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
+            <h2 className="font-bold text-2xl">Data Penjualan Beras</h2>
+            <div className="container mt-3 pt-2.5">
               <button
                 className="inline-flex rounded bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 cursor-pointer mb-5"
                 onClick={handleSubmit}
