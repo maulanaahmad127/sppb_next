@@ -1,12 +1,13 @@
 import Layout from "../../components/layout";
 import styles from "../../styles/login.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef  } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function FormBeras() {
-  const [nama, setNama] = useState(null);
+  const [nama, setNama] = useState("");
   const [detail, setDetail] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   const {
@@ -33,9 +34,10 @@ export default function FormBeras() {
     const res = await fetch(url, options);
     const data = await res.json();
     const det = data.data.payload;
-    console.log(det.nama);
-    setNama(det.nama);
+    const nama = det?.nama;
+    setNama(nama);
     setDetail(det);
+    setIsLoading(false);
   }
 
   async function getItem() {}
@@ -65,6 +67,19 @@ export default function FormBeras() {
       alert(data.data.message);
     }
   }
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="text-center items-center">
+          <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+            <div className="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-24 w-24"></div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
 
   return (
     <>
