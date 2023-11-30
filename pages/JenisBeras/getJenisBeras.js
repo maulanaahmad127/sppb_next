@@ -6,6 +6,7 @@ import { Dialog } from "@headlessui/react";
 
 export default function Dashboard() {
   const [content, setContent] = useState(null);
+  const [statusEmail, setStatusEmail] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
   const [totalPage, setTotalPage] = useState(null);
@@ -17,7 +18,27 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchContent();
+    fetchProfile();
   }, [page, search, isDeleted]);
+
+  async function fetchProfile() {
+    const tokenx = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        x: tokenx,
+      },
+    };
+    const url = "../api/Profil/getProfilHandler";
+    const res = await fetch(url, options);
+    const data = await res.json();
+    const listData = data.data.emailActivated;
+    console.log(`status email = ${listData.emailActivated}`);
+    setStatusEmail(listData);
+  }
 
   async function fetchContent() {
     const tokenx = localStorage.getItem("token");
@@ -60,12 +81,28 @@ export default function Dashboard() {
 
   function addJenisBerasHandler(event) {
     event.preventDefault();
-    Router.push("/JenisBeras/addJenisBeras");
+    if(statusEmail == false){
+      alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
+      Router.push({
+        pathname: "/Profil/getProfil",
+      });
+    }
+    else{
+      Router.push("/JenisBeras/addJenisBeras");
+    }
+    
   }
 
   function handleEdit(event) {
     event.preventDefault();
-    let idx = event.target.value;
+    if(statusEmail == false){
+      alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
+      Router.push({
+        pathname: "/Profil/getProfil",
+      });
+    }
+    else{
+      let idx = event.target.value;
 
     Router.push(
       {
@@ -74,6 +111,8 @@ export default function Dashboard() {
       },
       "/JenisBeras/updateJenisBeras"
     );
+    }
+    
   }
 
   function handleModal(event) {
@@ -88,7 +127,14 @@ export default function Dashboard() {
 
   async function handleDelete(event) {
     event.preventDefault();
-    let idx = event.target.value;
+    if(statusEmail == false){
+      alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
+      Router.push({
+        pathname: "/Profil/getProfil",
+      });
+    }
+    else{
+      let idx = event.target.value;
     const tokenx = localStorage.getItem("token");
 
     const options = {
@@ -114,6 +160,8 @@ export default function Dashboard() {
     } else {
       alert(data.data.message);
     }
+    }
+    
   }
   const role = snapshot.current;
   console.log(`role jenis beras ${role}`)

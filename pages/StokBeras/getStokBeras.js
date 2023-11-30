@@ -3,9 +3,11 @@ import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import Link from "next/link";
 import FileSaver from 'file-saver';
+import Router from "next/router";
 
 export default function EditStok() {
   const [content, setContent] = useState(null);
+  const [statusEmail, setStatusEmail] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
   const [totalPage, setTotalPage] = useState(null);
@@ -16,7 +18,27 @@ export default function EditStok() {
 
   useEffect(() => {
     fetchContent();
+    fetchProfile();
   }, [page, search, isTerjual]);
+
+  async function fetchProfile() {
+    const tokenx = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        x: tokenx,
+      },
+    };
+    const url = "../api/Profil/getProfilHandler";
+    const res = await fetch(url, options);
+    const data = await res.json();
+    const listData = data.data.emailActivated;
+    console.log(`status email = ${listData.emailActivated}`);
+    setStatusEmail(listData);
+  }
 
   async function fetchContent() {
     const tokenx = localStorage.getItem("token");
@@ -50,25 +72,39 @@ export default function EditStok() {
     setPage(curpage);
   }
 
+  async function updateStokHandler(event){
+    event.preventDefault();
+    
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
-    const tokenx = localStorage.getItem("token");
-    const options = {
-      method: "GET",
-      headers: {
-        x: tokenx,
-      },
-    };
-    const url = "../api/StokBeras/getStokBerasPDF";
-    try {
-      const pdf = await fetch(url, options);
-      const file = await pdf.blob();
-      let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}` 
-      let fileName =  `data_stok_beras${currentDate}`
-      FileSaver(file, fileName);
-    } catch (error) {
-      console.log(error);
+    if(statusEmail == false){
+      alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
+      Router.push({
+        pathname: "/Profil/getProfil",
+      });
     }
+    else{
+      const tokenx = localStorage.getItem("token");
+      const options = {
+        method: "GET",
+        headers: {
+          x: tokenx,
+        },
+      };
+      const url = "../api/StokBeras/getStokBerasPDF";
+      try {
+        const pdf = await fetch(url, options);
+        const file = await pdf.blob();
+        let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}` 
+        let fileName =  `data_stok_beras${currentDate}`
+        FileSaver(file, fileName);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+   
   }
   const role = snapshot.current;
   if (role === "ROLE_ADMIN") {

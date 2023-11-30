@@ -2,9 +2,11 @@ import { useEffect, useState, useRef } from "react";
 import ReactPaginate from "react-paginate";
 import Layout from "../../components/layout";
 import FileSaver from 'file-saver';
+import Router from "next/router";
 
 export default function EditStok() {
   const [content, setContent] = useState(null);
+  const [statusEmail, setStatusEmail] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
   const [totalPage, setTotalPage] = useState(null);
@@ -14,7 +16,27 @@ export default function EditStok() {
 
   useEffect(() => {
     fetchContent();
+    fetchProfile();
   }, [page, search]);
+
+  async function fetchProfile() {
+    const tokenx = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    snapshot.current = role;
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        x: tokenx,
+      },
+    };
+    const url = "../api/Profil/getProfilHandler";
+    const res = await fetch(url, options);
+    const data = await res.json();
+    const listData = data.data.emailActivated;
+    console.log(`status email = ${listData.emailActivated}`);
+    setStatusEmail(listData);
+  }
 
   async function fetchContent() {
     const tokenx = localStorage.getItem("token");
@@ -49,7 +71,14 @@ export default function EditStok() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const tokenx = localStorage.getItem("token");
+    if(statusEmail == false){
+      alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
+      Router.push({
+        pathname: "/Profil/getProfil",
+      });
+    }
+    else{
+      const tokenx = localStorage.getItem("token");
     const options = {
       method: "GET",
       headers: {
@@ -66,6 +95,8 @@ export default function EditStok() {
     } catch (error) {
       console.log(error);
     }
+    }
+    
   }
   const role = snapshot.current;
   if (role === "ROLE_ADMIN") {
