@@ -7,6 +7,7 @@ import FileSaver from "file-saver";
 
 export default function GetDataProduksiBeras() {
   const [content, setContent] = useState(null);
+  const [detail, setDetail] = useState(null);
   const [statusEmail, setStatusEmail] = useState(null);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
@@ -15,6 +16,7 @@ export default function GetDataProduksiBeras() {
   const [isDeleted, setIsDeleted] = useState(false);
   const snapshot = useRef(null);
   let [isOpen, setIsOpen] = useState(false);
+  let [isOpenDetail, setIsOpenDetail] = useState(false);
   const [targetId, setTargetId] = useState();
 
   useEffect(() => {
@@ -68,10 +70,14 @@ export default function GetDataProduksiBeras() {
     setContent(listData);
   }
 
-   const pagginationHandler = async ({selected}) => {
+  // async function fetchDataProduksiBerasByID() {
+    
+  // }
+
+  const pagginationHandler = async ({ selected }) => {
     console.log(selected);
     setPage(selected);
-   }
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -79,24 +85,57 @@ export default function GetDataProduksiBeras() {
 
   function handleInput(event) {
     event.preventDefault();
-    if(statusEmail == false){
+    if (statusEmail == false) {
       alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
       Router.push({
         pathname: "/Profil/getProfil",
       });
     }
-    else{
+    else {
       Router.push({
         pathname: "/DataProduksiBeras/pilihTimbangan",
       });
     }
 
-    
+
   }
 
   function handleModal(event) {
     setIsOpen(true);
     setTargetId(event.currentTarget.value);
+  }
+
+  async function handleDetail(event) {
+    setIsOpenDetail(true);
+    let idx = event.target.value;
+    try {
+      const tokenx = localStorage.getItem("token");
+
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          x: tokenx,
+          id: idx,
+        },
+      };
+      const url = "../api/DataProduksiBeras/getDataProduksiBersaByIDHandler";
+      const res = await fetch(url, options);
+      const data = await res.json();
+      const det = await data.data.payload;
+
+      console.log(det);
+      setDetail(det);
+
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
+
+  function closeDetail() {
+    setIsOpenDetail(false);
+    setTargetId(null);
   }
 
   function closeModal() {
@@ -106,94 +145,94 @@ export default function GetDataProduksiBeras() {
 
   async function handleDownload(event) {
     event.preventDefault();
-    if(statusEmail == false){
+    if (statusEmail == false) {
       alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
       Router.push({
         pathname: "/Profil/getProfil",
       });
     }
-    else{
+    else {
       const tokenx = localStorage.getItem("token");
-    const options = {
-      method: "GET",
-      headers: {
-        x: tokenx,
-      },
-    };
-    const url = "../api/DataProduksiBeras/getDataProduksiBerasPDF";
-    try {
-      const pdf = await fetch(url, options);
-      const file = await pdf.blob();
-      let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
-      let fileName = `data_produksi_beras${currentDate}`;
-      FileSaver(file, fileName);
-    } catch (error) {
-      console.log(error);
+      const options = {
+        method: "GET",
+        headers: {
+          x: tokenx,
+        },
+      };
+      const url = "../api/DataProduksiBeras/getDataProduksiBerasPDF";
+      try {
+        const pdf = await fetch(url, options);
+        const file = await pdf.blob();
+        let currentDate = `lastSync=${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}@${new Date().getHours()}-${new Date().getMinutes()}-${new Date().getSeconds()}`;
+        let fileName = `data_produksi_beras${currentDate}`;
+        FileSaver(file, fileName);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    }
-    
+
   }
 
   function handleEdit(event) {
     event.preventDefault();
-    if(statusEmail == false){
+    if (statusEmail == false) {
       alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
       Router.push({
         pathname: "/Profil/getProfil",
       });
     }
-    else{
+    else {
       let idx = event.target.value;
 
-    Router.push(
-      {
-        pathname: "/DataProduksiBeras/updateDataProduksiBeras",
-        query: { idx },
-      },
-      "/DataProduksiBeras/updateDataProduksiBeras"
-    );
+      Router.push(
+        {
+          pathname: "/DataProduksiBeras/updateDataProduksiBeras",
+          query: { idx },
+        },
+        "/DataProduksiBeras/updateDataProduksiBeras"
+      );
     }
-    
+
   }
 
 
   async function handleDelete(event) {
     event.preventDefault();
-    if(statusEmail == false){
+    if (statusEmail == false) {
       alert('email belum teraktivasi, silahkan aktivasi email terlebih dahulu');
       Router.push({
         pathname: "/Profil/getProfil",
       });
     }
-    else{
+    else {
       let idx = event.target.value;
-    const tokenx = localStorage.getItem("token");
+      const tokenx = localStorage.getItem("token");
 
-    const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        x: tokenx,
-        id: idx,
-      },
-    };
-    const url = "../api/DataProduksiBeras/deleteDataProduksiBerasHandler";
-    const res = await fetch(url, options);
-    const data = await res.json();
-    const status = data.status;
-    if (status) {
-      alert("Data berhasil dihapus");
-      if (isDeleted) {
-        setIsDeleted(false);
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          x: tokenx,
+          id: idx,
+        },
+      };
+      const url = "../api/DataProduksiBeras/deleteDataProduksiBerasHandler";
+      const res = await fetch(url, options);
+      const data = await res.json();
+      const status = data.status;
+      if (status) {
+        alert("Data berhasil dihapus");
+        if (isDeleted) {
+          setIsDeleted(false);
+        } else {
+          setIsDeleted(true);
+          closeModal();
+        }
       } else {
-        setIsDeleted(true);
-        closeModal();
+        alert(data.data.message);
       }
-    } else {
-      alert(data.data.message);
     }
-    }
-    
+
   }
   const role = snapshot.current;
   console.log(`role nya seusuai${role}`);
@@ -259,6 +298,82 @@ export default function GetDataProduksiBeras() {
             </div>
           </div>
         </Dialog>
+        {/* detail menu */}
+        {isOpenDetail ? (
+        <>
+          <div
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                  <h3 className="text-3xl font-semibold">
+                    Detail Data Produksi Beras
+                  </h3>
+                  <button
+                    className=" ml-10 bg-transparent border-0 text-black  float-right text-2xl leading-none outline-none focus:outline-none"
+                    onClick={() => setIsOpenDetail(false)}
+                  >x
+                    
+                  </button>
+                </div>
+                {/*body*/}
+                <div className="relative p-3 flex-auto">
+                 <table class="table-auto ">
+                  <tbody>
+                      <tr className="px-12 py-2 ">
+                        
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">ID</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.id}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Jenis Beras</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.jenisBeras.nama}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Nama Petani </td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.petani.nama}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Berat Beras</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.berat_beras} Kg</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Harga</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">Rp. {detail && detail.harga}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Tanggal Masuk</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.tanggal_masuk}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Terjual</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.terjual ? "Sudah Terjual" : "Belum Terjual"}</td>
+                      </tr>
+                      
+                  </tbody>
+                 </table>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setIsOpenDetail(false)}
+                  >
+                    Close
+                  </button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+        
         <Layout>
           <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
             <h2 className="font-bold text-2xl">Log Data Produksi Beras</h2>
@@ -409,6 +524,25 @@ export default function GetDataProduksiBeras() {
                             {content.tanggal_masuk}
                           </td>
                           <td className="px-3 py-2 border align-baseline">
+                            <button
+                              className="inline-flex rounded mr-2 bg-green-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                              onClick={handleDetail}
+                              value={content.id}
+                            >
+                              <span className="mr-1.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                class="icon icon-tabler icon-tabler-eye" 
+                                width="24" height="24" viewBox="0 0 24 24" 
+                                stroke-width="2" stroke="currentColor" 
+                                fill="none" stroke-linecap="round" 
+                                stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                  <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                  <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                  </svg>
+                              </span>
+                              DETAILS
+                            </button>
                             <button
                               className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                               onClick={handleEdit}

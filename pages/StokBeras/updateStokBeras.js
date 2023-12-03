@@ -13,6 +13,8 @@ export default function EditStok() {
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
   const [isTerjual, setIsTerjual] = useState(false);
+  let [isOpenDetail, setIsOpenDetail] = useState(false);
+  const [detail, setDetail] = useState(null);
 
   useEffect(() => {
     fetchContent();
@@ -55,6 +57,33 @@ export default function EditStok() {
     event.preventDefault();
     // console.log(jenisBeras);
   }
+  async function handleDetail(event) {
+    setIsOpenDetail(true);
+    let idx = event.target.value;
+    try {
+      const tokenx = localStorage.getItem("token");
+
+      const options = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          x: tokenx,
+          id: idx,
+        },
+      };
+      const url = "../api/DataProduksiBeras/getDataProduksiBersaByIDHandler";
+      const res = await fetch(url, options);
+      const data = await res.json();
+      const det = await data.data.payload;
+
+      console.log(det);
+      setDetail(det);
+
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
 
   async function handleEditStok(event) {
     event.preventDefault();
@@ -87,6 +116,81 @@ export default function EditStok() {
 
   return (
     <>
+    {/* detail menu */}
+    {isOpenDetail ? (
+        <>
+          <div
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                  <h3 className="text-3xl font-semibold">
+                    Detail Data Produksi Beras
+                  </h3>
+                  <button
+                    className=" ml-10 bg-transparent border-0 text-black  float-right text-2xl leading-none outline-none focus:outline-none"
+                    onClick={() => setIsOpenDetail(false)}
+                  >x
+                    
+                  </button>
+                </div>
+                {/*body*/}
+                <div className="relative p-3 flex-auto">
+                 <table class="table-auto ">
+                  <tbody>
+                      <tr className="px-12 py-2 ">
+                        
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">ID</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.id}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Jenis Beras</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.jenisBeras.nama}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Nama Petani </td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.petani.nama}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Berat Beras</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.berat_beras} Kg</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Harga</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">Rp. {detail && detail.harga}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Tanggal Masuk</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.tanggal_masuk}</td>
+                      </tr>
+                      <tr className="px-12 py-2 ">
+                        <td className="px-3 py-2 border-r my-4 text-blueGray-500 text-lg leading-relaxed font-bold">Terjual</td>
+                        <td className="px-3 py-2  my-4 text-blueGray-500 text-lg leading-relaxed">{detail && detail.terjual ? "Sudah Terjual" : "Belum Terjual"}</td>
+                      </tr>
+                      
+                  </tbody>
+                 </table>
+                </div>
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setIsOpenDetail(false)}
+                  >
+                    Close
+                  </button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
       <Layout>
         <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
           <div className="flex justify-between">
@@ -201,6 +305,25 @@ export default function EditStok() {
                         {content.terjual.toString()}
                       </td>
                       <td className="px-3 py-2 border">
+                      <button
+                              className="inline-flex rounded mr-2 bg-green-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                              onClick={handleDetail}
+                              value={content.id}
+                            >
+                              <span className="mr-1.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" 
+                                class="icon icon-tabler icon-tabler-eye" 
+                                width="24" height="24" viewBox="0 0 24 24" 
+                                stroke-width="2" stroke="currentColor" 
+                                fill="none" stroke-linecap="round" 
+                                stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                  <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                                  <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" />
+                                  </svg>
+                              </span>
+                              DETAILS
+                            </button>
                         <button
                           className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                           onClick={handleEditStok}
