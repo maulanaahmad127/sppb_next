@@ -149,6 +149,9 @@ export default function EditStok() {
                         Total (Kilogram)
                       </th>
                       <th className="px-3 py-2 border" scope="col">
+                        Total Harga
+                      </th>
+                      <th className="px-3 py-2 border" scope="col">
                         Bulan
                       </th>
                       <th className="px-3 py-2 border" scope="col">
@@ -171,6 +174,9 @@ export default function EditStok() {
                           </td>
                           <td className="px-3 py-2 border">
                             {content.totalBerat}
+                          </td>
+                          <td className="px-3 py-2 border">
+                            {content.totalHarga}
                           </td>
                           <td className="px-3 py-2 border">{content.bulan}</td>
                           <td className="px-3 py-2 border">{content.tahun}</td>
