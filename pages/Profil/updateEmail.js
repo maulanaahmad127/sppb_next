@@ -43,6 +43,7 @@ export default function FormEditEmail() {
       alert(data.data.message);
       setIsLoading(false);
       router.push("/Profil/getProfil");
+      alert("Email berhasil diubah");
       
     } else {
       setIsLoading(false);

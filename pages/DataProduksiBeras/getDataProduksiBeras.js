@@ -541,16 +541,16 @@ export default function GetDataProduksiBeras() {
                           <td className="px-3 py-2 border">
                             {content.tanggal_masuk}
                           </td>
-                          <td className="px-3 py-2 border align-baseline">
+                          <td className="px-3 py-2 border justify-between align-baseline">
                             <button
-                              className="inline-flex rounded mr-2 bg-green-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                              className="inline-flex rounded mr-2 bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                               onClick={handleDetail}
                               value={content.id}
                             >
                               <span className="mr-1.5">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                   class="icon icon-tabler icon-tabler-eye"
-                                  width="24" height="24" viewBox="0 0 24 24"
+                                  width="20" height="20" viewBox="0 0 24 24"
                                   stroke-width="2" stroke="currentColor"
                                   fill="none" stroke-linecap="round"
                                   stroke-linejoin="round">

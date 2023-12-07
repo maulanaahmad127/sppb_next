@@ -215,12 +215,12 @@ export default function EditStok() {
         )}
       <Layout>
         <div className="px-6 pt-8 pb-4 rounded-sm border border-stroke bg-white shadow-default">
-          <div className="flex justify-between">
-            <h2 className="font-bold text-2xl self-center">
+          <div className="flex justify-between items-center">
+            <h2 className="font-bold text-2xl">
               Data Produksi Beras yang Belum Terjual
             </h2>
             <Link
-              className="py-1 pr-3 pl-2 h-fit border rounded-md hover:bg-gray-500 hover:text-white mt-7 md:mt-4 flex"
+              className="py-1 pr-3 pl-2 h-fit border rounded-md hover:bg-gray-500 hover:text-white md:mt-4 flex"
               href="/StokBeras/getStokBeras"
             >
               <svg
@@ -243,6 +243,9 @@ export default function EditStok() {
               <span className="pl-2">Kembali</span>
             </Link>
           </div>
+          
+
+          <div className="container pt-2.5">
           <form className="flex justify-end items-strecth w-full mt-3 mb-5">
             <input
               className="rounded-l-md border bg-transparent p-1 outline-none focus:border-blue-600 focus-visible:shadow-none"
@@ -274,8 +277,6 @@ export default function EditStok() {
               </svg>
             </button>
           </form>
-
-          <div className="container pt-2.5 w-fit">
             <table className="table-auto border rounded-sm pt-3 mb-2 w-full overflow-auto">
               <thead>
                 <tr className="bg-gray-300 border">
@@ -328,14 +329,14 @@ export default function EditStok() {
                       </td>
                       <td className="px-3 py-2 border">
                       <button
-                              className="inline-flex rounded mr-2 bg-green-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                              className="inline-flex rounded mr-2 bg-green-500 hover:opacity-80 active:bg-green-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                               onClick={handleDetail}
                               value={content.id}
                             >
                               <span className="mr-1.5">
                                 <svg xmlns="http://www.w3.org/2000/svg" 
                                 class="icon icon-tabler icon-tabler-eye" 
-                                width="24" height="24" viewBox="0 0 24 24" 
+                                width="20" height="20" viewBox="0 0 24 24" 
                                 stroke-width="2" stroke="currentColor" 
                                 fill="none" stroke-linecap="round" 
                                 stroke-linejoin="round">
@@ -347,11 +348,11 @@ export default function EditStok() {
                               DETAILS
                             </button>
                         <button
-                          className="inline-flex rounded mr-2 bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
+                          className="inline-flex rounded bg-blue-500 hover:opacity-80 active:bg-blue-600 text-center text-white text-xs px-2 py-1 cursor-pointer"
                           onClick={handleEditStok}
                           value={content.id}
                         >
-                          <span className="mr-1.5">
+                          <span className="mr-1.5 self-center">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               class="icon icon-tabler icon-tabler-check"

@@ -39,7 +39,7 @@ export default function FormEditPassword() {
     const status = data.status;
     if (status) {
       router.push("/Profil/getProfil");
-      alert("password berhasil dirubah");
+      alert("Password berhasil dirubah");
     } else {
       alert(data.data.message);
     }

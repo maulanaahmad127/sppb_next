@@ -37,7 +37,7 @@ export default function FormEditUsername() {
     const data = await res.json();
     const status = data.status;
     if (status) {
-      alert("username berhasil dirubah");
+      alert("Username berhasil dirubah");
       router.push("/signout");
     } else {
       alert(data.data.message);
